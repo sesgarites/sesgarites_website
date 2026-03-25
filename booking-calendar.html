@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rental Availability Calendar</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f7f7f5;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e0dfd8;
+      padding: 2rem;
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .card-title { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+    .card-subtitle { font-size: 14px; color: #888; margin-bottom: 1.5rem; }
+
+    .cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+
+    .month-label { font-size: 16px; font-weight: 600; }
+
+    .nav-btn {
+      background: none;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 34px; height: 34px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .nav-btn:hover { background: #f0efe8; }
+
+    .weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+    .weekdays span { text-align: center; font-size: 12px; color: #999; padding: 4px 0; }
+
+    .days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+
+    .day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .day.past   { color: #ccc; }
+    .day.available { background: #EAF3DE; color: #27500A; }
+    .day.booked    { background: #FAECE7; color: #993C1D; font-weight: 600; }
+    .day.today     { outline: 2px solid #378ADD; outline-offset: -2px; font-weight: 600; }
+
+    .legend {
+      display: flex; gap: 20px;
+      margin-top: 1.25rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #666; }
+    .legend-dot  { width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0; }
+
+    .status-bar { text-align: center; font-size: 13px; color: #999; margin-bottom: 1rem; min-height: 20px; }
+
+    .cal-footer { text-align: center; margin-top: 1.25rem; font-size: 13px; color: #999; }
+    .cal-footer a { color: #185FA5; text-decoration: none; }
+    .cal-footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 400px) {
+      .card { padding: 1.25rem; }
+      .day  { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-title">Rental Availability</div>
+  <div class="card-subtitle">Check when the property is available to book</div>
+
+  <div class="cal-header">
+    <button class="nav-btn" id="prev">&#8592;</button>
+    <span class="month-label" id="month-label">Loading…</span>
+    <button class="nav-btn" id="next">&#8594;</button>
+  </div>
+
+  <div class="status-bar" id="status">Fetching availability…</div>
+
+  <div class="weekdays">
+    <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span>
+    <span>Thu</span><span>Fri</span><span>Sat</span>
+  </div>
+  <div class="days" id="days"></div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#EAF3DE;"></div>Available</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#FAECE7;"></div>Booked</div>
+    <div class="legend-item"><div class="legend-dot" style="outline:2px solid #378ADD;outline-offset:-2px;"></div>Today</div>
+  </div>
+
+  <div class="cal-footer">
+    Last updated: <span id="updated">—</span> &nbsp;·&nbsp;
+    <a href="calendar.ics">Download .ics</a>
+  </div>
+</div>
+
+<script>
+  const monthNames = [
+    "January","February","March","April","May","June",
+    "July","August","September","October","November","December"
+  ];
+
+  let bookedRanges = [];
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  let viewYear  = today.getFullYear();
+  let viewMonth = today.getMonth();
+
+  function parseICS(text) {
+    const ranges = [];
+    const lines = text.replace(/\r\n/g,"\n").replace(/\r/g,"\n").split("\n");
+    let inEvent = false, dtStart = null, dtEnd = null;
+    for (const line of lines) {
+      if (line === "BEGIN:VEVENT") { inEvent = true; dtStart = null; dtEnd = null; continue; }
+      if (!inEvent) continue;
+      const parseDate = (raw) => {
+        const v = raw.replace(/T.*/,"").replace(/-/g,"");
+        if (v.length !== 8) return null;
+        return new Date(+v.slice(0,4), +v.slice(4,6)-1, +v.slice(6,8));
+      };
+      if (line.startsWith("DTSTART")) dtStart = parseDate(line.split(":").slice(1).join(":"));
+      if (line.startsWith("DTEND"))   dtEnd   = parseDate(line.split(":").slice(1).join(":"));
+      if (line === "END:VEVENT") {
+        if (dtStart && dtEnd) ranges.push({ start: dtStart, end: dtEnd });
+        inEvent = false;
+      }
+    }
+    return ranges;
+  }
+
+  function isBooked(date) {
+    const t = date.getTime();
+    return bookedRanges.some(r => t >= r.start.getTime() && t < r.end.getTime());
+  }
+
+  function renderCalendar() {
+    document.getElementById("month-label").textContent = `${monthNames[viewMonth]} ${viewYear}`;
+    const daysEl = document.getElementById("days");
+    daysEl.innerHTML = "";
+    const firstDay    = new Date(viewYear, viewMonth, 1).getDay();
+    const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+    for (let i = 0; i < firstDay; i++) {
+      const el = document.createElement("div"); el.className = "day empty"; daysEl.appendChild(el);
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date = new Date(viewYear, viewMonth, d);
+      date.setHours(0,0,0,0);
+      const el = document.createElement("div");
+      const past = date < today, booked = isBooked(date);
+      let cls = "day";
+      if (past) cls += " past";
+      else if (booked) cls += " booked";
+      else cls += " available";
+      if (date.getTime() === today.getTime()) cls += " today";
+      el.className = cls;
+      el.textContent = d;
+      if (booked && !past) el.title = "Booked";
+      daysEl.appendChild(el);
+    }
+  }
+
+  async function loadCalendar() {
+    try {
+      // Fetches calendar.ics from the same directory — kept fresh by GitHub Actions every hour
+      const res = await fetch("calendar.ics");
+      if (!res.ok) throw new Error("fetch failed");
+      const text = await res.text();
+      bookedRanges = parseICS(text);
+      const n = bookedRanges.length;
+      document.getElementById("status").textContent =
+        n > 0 ? `${n} booking period${n > 1 ? "s" : ""} loaded` : "No bookings found";
+      const lastMod = res.headers.get("last-modified");
+      document.getElementById("updated").textContent =
+        lastMod ? new Date(lastMod).toLocaleDateString() : new Date().toLocaleDateString();
+    } catch (e) {
+      document.getElementById("status").textContent = "Could not load calendar — please try again later.";
+    }
+    renderCalendar();
+  }
+
+  document.getElementById("prev").addEventListener("click", () => {
+    if (--viewMonth < 0) { viewMonth = 11; viewYear--; } renderCalendar();
+  });
+  document.getElementById("next").addEventListener("click", () => {
+    if (++viewMonth > 11) { viewMonth = 0; viewYear++; } renderCalendar();
+  });
+
+  loadCalendar();
+</script>
+</body>
+</html>
