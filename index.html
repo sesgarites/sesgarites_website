@@ -552,9 +552,12 @@
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#location">Location</a></li>
   </ul>
+  <div id="google_translate_element"></div>
   <a href="#enquiry" class="nav-cta">Reserve Now</a>
 </nav>
- 
+
+
+  
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
@@ -1026,6 +1029,24 @@
     <span class="footer-logo">Ses Garites</span>
     <p class="footer-loc">Pals · Baix Empordà · Costa Brava, Catalonia</p>
     <p class="foot
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: 'en',
+        includedLanguages: 'es,fr,de,it',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      },
+      'google_translate_element'
+    );
+  }
+</script>
+    
+<script type="text/javascript" 
+  src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>    
+    
 <script>
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
