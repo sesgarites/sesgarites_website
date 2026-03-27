@@ -297,7 +297,14 @@ nav.scrolled .nav-hamburger span { background: var(--ink); }
     content: ''; width: 1px; height: 40px;
     background: linear-gradient(to bottom, rgba(255,255,255,0.9), transparent);
   }
-
+  @media (max-width: 900px) {
+    /* Hero fix */
+   .hero-bg {
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+  }
   
   @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:0.9} }
 
