@@ -139,20 +139,6 @@ nav.scrolled .nav-hamburger span { background: var(--ink); }
   .nav-hamburger { display: flex; }
   .lang-toggle a { font-size: 0.55rem; padding: 0.3rem 0.6rem; }
 
-  /* Hero fix */
-
-  .hero-bg {
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
-  }
-
-  
-  /* .hero-bg { background-position: 70% center; } */
-  .hero-stats { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
-  .hero-stat-num { font-size: 1.6rem; }
-  .hero-stat-label { font-size: 0.5rem; }
-
   .about-grid, .location-grid, .enquiry-grid { grid-template-columns: 1fr; }
   .about-image-stack { height: 320px; }
   .exp-grid, .amenities-grid, .pricing-grid { grid-template-columns: 1fr; }
@@ -299,11 +285,18 @@ nav.scrolled .nav-hamburger span { background: var(--ink); }
   }
   @media (max-width: 900px) {
     /* Hero fix */
-   .hero-bg {
+   .hero-bg { background-position: 60% center; } 
+    
+  .hero-stats { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+  .hero-stat-num { font-size: 1.6rem; }
+  .hero-stat-label { font-size: 0.5rem; }
+   /*
+    .hero-bg {
       background-size: contain;
       background-position: center center;
       background-repeat: no-repeat;
     }
+    */
   }
   
   @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:0.9} }
