@@ -41,6 +41,27 @@
     color: var(--ink);
     overflow-x: hidden;
   }
+
+/* LANGUAGE TOGGLE */
+.lang-toggle {
+  display: flex; align-items: center; gap: 0;
+  border: 1px solid rgba(255,255,255,0.35);
+  overflow: hidden; transition: border-color 0.4s;
+}
+nav.scrolled .lang-toggle { border-color: rgba(200,184,154,0.5); }
+.lang-toggle a {
+  font-family: 'Cinzel', serif; font-size: 0.62rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; padding: 0.35rem 0.75rem;
+  transition: background 0.3s, color 0.3s;
+  color: rgba(255,255,255,0.6); background: transparent;
+}
+nav.scrolled .lang-toggle a { color: var(--stone-dark); }
+.lang-toggle a.active { background: var(--gold); color: var(--white) !important; }
+.lang-toggle a:not(.active):hover { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.95); }
+nav.scrolled .lang-toggle a:not(.active):hover { background: rgba(184,150,90,0.1); color: var(--ink); }
+
+
   
   /*  NAV  */
   nav {
@@ -552,7 +573,11 @@
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#location">Location</a></li>
   </ul>
-  <div id="google_translate_element"></div>
+  <div class="lang-toggle">
+    <a href="index.html" class="active">EN</a>
+    <a href="index-es.html">ES</a>
+  </div>
+
   <a href="#enquiry" class="nav-cta">Reserve Now</a>
 </nav>
 
