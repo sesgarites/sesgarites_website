@@ -604,6 +604,44 @@ nav.scrolled .nav-hamburger span { background: var(--ink); }
   }
   .gallery-item:hover .gallery-label { opacity: 0; }
 
+  
+  /*  MORE IMAGES  */
+
+  .more-images-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 2rem;
+    padding: 0.85rem 2rem;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    color: var(--stone-dark, #4a3f35);
+    background: transparent;
+    border: 1px solid var(--stone-dark, #4a3f35);
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.35s ease, color 0.35s ease, letter-spacing 0.35s ease;
+  }
+  
+  .more-images-link::after {
+    content: '→';
+    font-style: normal;
+    transition: transform 0.35s ease;
+  }
+  
+  .more-images-link:hover {
+    background: var(--stone-dark, #4a3f35);
+    color: var(--parchment, #f4ecdf);
+    letter-spacing: 0.06em;
+  }
+  
+  .more-images-link:hover::after {
+    transform: translateX(4px);
+  }
+    
+    
 
   /*  LOCATION  */
   #location { background: var(--white); }
@@ -1081,10 +1119,17 @@ nav.scrolled .nav-hamburger span { background: var(--ink); }
        </div>
 
     </div>
+    
+    <div class="gallery-grid" style="margin-top:3rem;">
+       <!-- ... your 15 gallery items unchanged ... -->
+    </div>
+    
+    <div style="text-align:center;">
+      <a href="#" class="more-images-link" onclick="openGallery('images/house'); return false;">
+        More House Images
+      </a>
+    </div>
 
-<a href="#" onclick="openGallery('images/house'); return false;">
-     More House Images
-   </a>
     
   </div>
 </section>
