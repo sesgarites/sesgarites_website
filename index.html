@@ -1316,6 +1316,17 @@ nav.scrolled .nav-hamburger span { background: var(--ink); }
 
 
 <script>
+  function openGallery(folderPath) {
+    const url = 'gallery.html?folder=' + encodeURIComponent(folderPath);
+    window.open(
+      url,
+      'imageGallery',
+      'width=1100,height=750,resizable=yes,scrollbars=yes'
+    );
+  }
+</script>
+  
+<script>
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
