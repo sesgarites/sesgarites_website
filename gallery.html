@@ -117,6 +117,19 @@
   }
   .stage img.loaded { opacity: 1; }
 
+  .image-title {
+    flex-shrink: 0;
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: var(--text-dim);
+    background: var(--panel);
+    border-top: 1px solid #2a2d30;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .stage .spinner {
     position: absolute;
     width: 32px;
@@ -230,6 +243,7 @@
       <img id="mainImage" alt="">
       <button class="nav-arrow next" id="nextBtn" aria-label="Next image">›</button>
     </div>
+    <div class="image-title" id="imageTitle"></div>
     <div class="thumb-strip" id="thumbStrip"></div>
   </div>
 </div>
@@ -241,6 +255,7 @@
   const mainImage = document.getElementById('mainImage');
   const spinner = document.getElementById('spinner');
   const thumbStrip = document.getElementById('thumbStrip');
+  const imageTitle = document.getElementById('imageTitle');
   const folderLabel = document.getElementById('folderLabel');
   const counter = document.getElementById('counter');
   const prevBtn = document.getElementById('prevBtn');
@@ -252,8 +267,15 @@
   const folder = params.get('folder');
 
   let images = [];
+  let filenames = [];
   let currentIndex = 0;
   let thumbsPosition = localStorage.getItem('gallery-thumbs-position') || 'below';
+
+  // Turn "my-cool_Photo (2).jpg" into "my cool Photo (2)"
+  function filenameToTitle(filename) {
+    const withoutExt = filename.replace(/\.[^./]+$/, '');
+    return withoutExt.replace(/[_-]+/g, ' ').trim();
+  }
 
   function applyThumbsPosition() {
     app.classList.remove('thumbs-above', 'thumbs-below');
@@ -291,7 +313,9 @@
       return res.json();
     })
     .then(data => {
-      images = (data.images || []).map(name => folder.replace(/\/+$/, '') + '/' + name);
+      const names = data.images || [];
+      filenames = names;
+      images = names.map(name => folder.replace(/\/+$/, '') + '/' + name);
       if (images.length === 0) {
         showError('This folder has no images yet.');
         return;
@@ -342,6 +366,7 @@
     loader.src = images[currentIndex];
 
     counter.textContent = (currentIndex + 1) + ' / ' + images.length;
+    imageTitle.textContent = filenameToTitle(filenames[currentIndex]);
     prevBtn.disabled = currentIndex === 0;
     nextBtn.disabled = currentIndex === images.length - 1;
 
