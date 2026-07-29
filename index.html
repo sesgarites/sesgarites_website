@@ -129,21 +129,7 @@
 </script>
   
 <-- CONTACT US FORM -->
-<script>
-  // Clicking "Contact Us" reveals the form in place and hides the link.
-  document.getElementById('sg-toggle').addEventListener('click', function (e) {
-    e.preventDefault();
-    document.getElementById('sg-form').hidden = false;
-    e.target.style.display = 'none';
-    document.getElementById('sg-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
 
-  // Reveal the "please specify" field only when "Other" is chosen.
-  document.getElementById('sg-source').addEventListener('change', function (e) {
-    var wrap = document.getElementById('sg-other-wrap');
-    wrap.hidden = e.target.value !== 'Other';
-  });
-</script>
   
 <style>
   /* This inherits your page's own font/ink color instead of
@@ -1507,7 +1493,22 @@ nav.scrolled .nav-hamburger span { background: var(--ink); }
   </div>
 </footer>
 
+<script>
+  // Clicking "Contact Us" reveals the form in place and hides the link.
+  document.getElementById('sg-toggle').addEventListener('click', function (e) {
+    e.preventDefault();
+    document.getElementById('sg-form').hidden = false;
+    e.target.style.display = 'none';
+    document.getElementById('sg-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 
+  // Reveal the "please specify" field only when "Other" is chosen.
+  document.getElementById('sg-source').addEventListener('change', function (e) {
+    var wrap = document.getElementById('sg-other-wrap');
+    wrap.hidden = e.target.value !== 'Other';
+  });
+</script>
+  
 <script>
   function openGallery(folderPath) {
     const url = 'gallery.html?folder=' + encodeURIComponent(folderPath);
