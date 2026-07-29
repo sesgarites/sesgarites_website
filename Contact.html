@@ -1,0 +1,193 @@
+<!-- 
+  SES GARITES — CONTACT FORM
+  =============================================================
+  SETUP (2 minutes):
+  1. Go to https://formspree.io and create a free account.
+  2. Create a new form, get your form ID (looks like "abcd1234").
+  3. Replace YOUR_FORM_ID below (in the <form action="..."> line) with it.
+
+  HOW TO SLOT THIS INTO YOUR EXISTING PAGE:
+  Replace ONLY this block in your HTML:
+
+      <div class="enquiry-contact">
+        <span class="enquiry-contact-label">Email</span>
+        <span class="enquiry-contact-value"><a href="mailto:...">Contact Us</a></span>
+      </div>
+
+  ...with the <div class="enquiry-contact"> ... </div> block below.
+  "Contact Us" now reveals the form in place instead of opening an
+  email draft. Everything after that in your page — the "Location"
+  row, the ornament, the currency/exclusive-hire paragraph — stays
+  exactly as it is; do not touch those.
+
+  This reuses your page's own --ink-soft variable so it matches
+  your site's look without introducing a new palette.
+  =============================================================
+-->
+
+<div class="enquiry-contact">
+  <span class="enquiry-contact-label">Email</span>
+  <span class="enquiry-contact-value"><a href="#sg-form" id="sg-toggle">Contact Us</a></span>
+</div>
+
+<section class="sg-contact" id="sg-form" hidden>
+  <p class="sg-contact__sub">
+    Share a few details — whether you're planning a stay or an
+    event — and we'll write back within two days with availability
+    and pricing.
+  </p>
+
+  <form class="sg-contact__form" action="https://formspree.io/f/xeeydgba" method="POST">
+
+    <div class="sg-field-row">
+      <div class="sg-field">
+        <label for="sg-name">Your name</label>
+        <input type="text" id="sg-name" name="name" required>
+      </div>
+      <div class="sg-field">
+        <label for="sg-email">Email</label>
+        <input type="email" id="sg-email" name="email" required>
+      </div>
+    </div>
+
+    <div class="sg-field-row">
+      <div class="sg-field">
+        <label for="sg-checkin">Check-in</label>
+        <input type="date" id="sg-checkin" name="checkin_date">
+      </div>
+      <div class="sg-field">
+        <label for="sg-checkout">Check-out</label>
+        <input type="date" id="sg-checkout" name="checkout_date">
+      </div>
+    </div>
+
+    <div class="sg-field">
+      <label for="sg-guests">Number of guests</label>
+      <input type="number" id="sg-guests" name="guest_count" min="1" placeholder="e.g. 8, or 80 for an event">
+    </div>
+
+    <div class="sg-field">
+      <label for="sg-message">Your message</label>
+      <textarea id="sg-message" name="message" rows="4" placeholder="Tell us a bit about your stay or the occasion you're planning..."></textarea>
+    </div>
+
+    <div class="sg-field">
+      <label for="sg-source">How did you find Ses Garites? <span class="sg-optional">(optional)</span></label>
+      <select id="sg-source" name="how_did_you_find_us">
+        <option value="" selected disabled>Choose one...</option>
+        <option value="Google / web search">Google or web search</option>
+        <option value="Instagram">Instagram</option>
+        <option value="Wedding planner or vendor referral">Wedding planner or vendor referral</option>
+        <option value="Friend or family recommendation">Friend or family recommendation</option>
+        <option value="Wedding fair or publication">Wedding fair or publication</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div class="sg-field sg-field--other" id="sg-other-wrap" hidden>
+      <label for="sg-other">Please specify</label>
+      <input type="text" id="sg-other" name="how_did_you_find_us_other">
+    </div>
+
+    <!-- honeypot field to cut down on spam; Formspree ignores real submissions with this left blank -->
+    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+    <button type="submit" class="sg-submit">Send inquiry</button>
+  </form>
+</section>
+
+<style>
+  /* This inherits your page's own font/ink color instead of
+     introducing a new palette — only layout/spacing is added here. */
+  .sg-contact {
+    max-width: 640px;
+    margin: 2rem 0 0;
+    padding: 0;
+    color: inherit;
+    font-family: inherit;
+  }
+
+  .sg-contact__sub {
+    margin: 0 0 1.5rem;
+    line-height: 1.6;
+    color: var(--ink-soft, #8a8371);
+    max-width: 42ch;
+  }
+
+  .sg-field-row {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .sg-field-row .sg-field { flex: 1; }
+
+  .sg-field {
+    margin-bottom: 1.1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sg-field label {
+    font-size: 0.85rem;
+    margin-bottom: 0.35rem;
+    color: inherit;
+  }
+
+  .sg-optional {
+    color: var(--ink-soft, #8a8371);
+    font-weight: normal;
+  }
+
+  .sg-field input,
+  .sg-field select,
+  .sg-field textarea {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.6rem 0.7rem;
+    border: 1px solid var(--ink-soft, #d8cdb4);
+    border-radius: 3px;
+    background: transparent;
+    color: inherit;
+  }
+
+  .sg-field input:focus,
+  .sg-field select:focus,
+  .sg-field textarea:focus {
+    outline: 1px solid currentColor;
+    outline-offset: 1px;
+  }
+
+  .sg-submit {
+    margin-top: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background: transparent;
+    color: inherit;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+  }
+
+  .sg-submit:hover { opacity: 0.75; }
+
+  @media (max-width: 480px) {
+    .sg-field-row { flex-direction: column; gap: 0; }
+  }
+</style>
+
+<script>
+  // Clicking "Contact Us" reveals the form in place and hides the link.
+  document.getElementById('sg-toggle').addEventListener('click', function (e) {
+    e.preventDefault();
+    document.getElementById('sg-form').hidden = false;
+    e.target.style.display = 'none';
+    document.getElementById('sg-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Reveal the "please specify" field only when "Other" is chosen.
+  document.getElementById('sg-source').addEventListener('change', function (e) {
+    var wrap = document.getElementById('sg-other-wrap');
+    wrap.hidden = e.target.value !== 'Other';
+  });
+</script>
