@@ -129,6 +129,22 @@
 </script>
   
 <-- CONTACT US FORM -->
+<script>
+  // Clicking "Contact Us" reveals the form in place and hides the link.
+  document.getElementById('sg-toggle').addEventListener('click', function (e) {
+    e.preventDefault();
+    document.getElementById('sg-form').hidden = false;
+    e.target.style.display = 'none';
+    document.getElementById('sg-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Reveal the "please specify" field only when "Other" is chosen.
+  document.getElementById('sg-source').addEventListener('change', function (e) {
+    var wrap = document.getElementById('sg-other-wrap');
+    wrap.hidden = e.target.value !== 'Other';
+  });
+</script>
+  
 <style>
   /* This inherits your page's own font/ink color instead of
      introducing a new palette — only layout/spacing is added here. */
@@ -209,21 +225,6 @@
   }
 </style>
   
-<script>
-  // Clicking "Contact Us" reveals the form in place and hides the link.
-  document.getElementById('sg-toggle').addEventListener('click', function (e) {
-    e.preventDefault();
-    document.getElementById('sg-form').hidden = false;
-    e.target.style.display = 'none';
-    document.getElementById('sg-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-
-  // Reveal the "please specify" field only when "Other" is chosen.
-  document.getElementById('sg-source').addEventListener('change', function (e) {
-    var wrap = document.getElementById('sg-other-wrap');
-    wrap.hidden = e.target.value !== 'Other';
-  });
-</script>
  <-- END OF CONTACT US FORM --> 
   
 <meta charset="UTF-8">
@@ -1414,8 +1415,8 @@ nav.scrolled .nav-hamburger span { background: var(--ink); }
           <span class="enquiry-contact-value"><a href="mailto:montsetarrus71+sesgarites@gmail.com?subject=Enquiry%20-%20Ses%20Garites&body=Hello%2C%0A%0AI%20am%20interested%20in%20booking%20Ses%20Garites.%0A%0AName%3A%0ADates%3A%0ANumber%20of%20guests%3A%0AType%20of%20occasion%3A%0A%0AThank%20you">Contact Us</a></span>
         </div> -->
         <div class="enquiry-contact">
-          <span class="enquiry-contact-label">Email</span>
-          <span class="enquiry-contact-value"><a href="#sg-form" id="sg-toggle">Contact Us</a></span>
+          <span class="enquiry-contact-label">Contact Us</span>
+          <span class="enquiry-contact-value"><a href="#sg-form" id="sg-toggle">Inquiry</a></span>
         </div>
      
         
