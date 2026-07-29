@@ -1,31 +1,3 @@
-<!-- 
-  SES GARITES — CONTACT FORM
-  =============================================================
-  SETUP (2 minutes):
-  1. Go to https://formspree.io and create a free account.
-  2. Create a new form, get your form ID (looks like "abcd1234").
-  3. Replace YOUR_FORM_ID below (in the <form action="..."> line) with it.
-
-  HOW TO SLOT THIS INTO YOUR EXISTING PAGE:
-  Replace ONLY this block in your HTML:
-
-      <div class="enquiry-contact">
-        <span class="enquiry-contact-label">Email</span>
-        <span class="enquiry-contact-value"><a href="mailto:...">Contact Us</a></span>
-      </div>
-
-  ...with the <div class="enquiry-contact"> ... </div> block below.
-  "Contact Us" now reveals the form in place instead of opening an
-  email draft. Everything after that in your page — the "Location"
-  row, the ornament, the currency/exclusive-hire paragraph — stays
-  exactly as it is; do not touch those.
-
-  This reuses your page's own --ink-soft variable so it matches
-  your site's look without introducing a new palette.
-  =============================================================
--->
-
-
 
 <section class="sg-contact" id="sg-form">
   <p class="sg-contact__sub">
@@ -35,7 +7,7 @@
   </p>
 
   <form class="sg-contact__form" id="contactForm" action="https://formspree.io/f/xeeydgba" method="POST">
-<input type="hidden" name="_next" value="https://sesgarites.com/">
+
     <div class="sg-field-row">
       <div class="sg-field">
         <label for="sg-name">Your name</label>
@@ -176,48 +148,59 @@
 </style>
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 
-  // Reveal the "please specify" field only when "Other" is chosen.
-  document.getElementById('sg-source').addEventListener('change', function (e) {
-    var wrap = document.getElementById('sg-other-wrap');
-    wrap.hidden = e.target.value !== 'Other';
-  });
-</script>
+  // "Other" referral field
+  const source = document.getElementById("sg-source");
+  const otherWrap = document.getElementById("sg-other-wrap");
 
-
-
-<script>
-const form = document.getElementById("contactForm");
-const status = document.getElementById("status");
-
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  const data = new FormData(form);
-
-  try {
-    const response = await fetch(form.action, {
-      method: "POST",
-      body: data,
-      headers: {
-        "Accept": "application/json"
-      }
+  if (source && otherWrap) {
+    source.addEventListener("change", function (e) {
+      otherWrap.hidden = e.target.value !== "Other";
     });
-
-    if (response.ok) {
-      status.textContent = "Thank you! Redirecting...";
-      form.reset();
-
-      setTimeout(() => {
-        window.location.href = "index.html";
-        // or "/" if your homepage is at the site root
-      }, 1500);
-
-    } else {
-      status.textContent = "Sorry, your message couldn't be sent.";
-    }
-
-  } catch (error) {
-    status.textContent = "Network error. Please try again.";
   }
+
+
+  // Formspree AJAX submit
+  const form = document.getElementById("contactForm");
+  const status = document.getElementById("status");
+
+  if (!form) {
+    console.error("Contact form not found");
+    return;
+  }
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    console.log("Form submission intercepted");
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: {
+          "Accept": "application/json"
+        }
+      });
+
+      if (response.ok) {
+        status.textContent = "Thank you! Redirecting...";
+        form.reset();
+
+        setTimeout(function () {
+          window.location.href = "/";
+        }, 1500);
+
+      } else {
+        status.textContent = "Sorry, your message couldn't be sent.";
+      }
+
+    } catch (error) {
+      console.error(error);
+      status.textContent = "Network error. Please try again.";
+    }
+  });
+
 });
+</script>
