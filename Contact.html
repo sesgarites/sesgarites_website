@@ -34,12 +34,7 @@
     and pricing.
   </p>
 
-    <!--
-  <div class="enquiry-contact"> 
-  <span class="enquiry-contact-label">Email Us Now</span>
-  <span class="enquiry-contact-value"><a href="#sg-form" id="sg-toggle">Contact Us</a></span> 
--->
-  <form class="sg-contact__form" action="https://formspree.io/f/xeeydgba" method="POST">
+  <form class="sg-contact__form" id="contactForm" action="https://formspree.io/f/xeeydgba" method="POST">
 <input type="hidden" name="_next" value="https://sesgarites.com/">
     <div class="sg-field-row">
       <div class="sg-field">
@@ -96,7 +91,7 @@
 
     <button type="submit" class="sg-submit">Send inquiry</button>
   </form>
-
+<p id="status"></p>
  
 </section>
 
@@ -195,3 +190,41 @@
     wrap.hidden = e.target.value !== 'Other';
   });
 </script>
+
+
+
+<script>
+const form = document.getElementById("contactForm");
+const status = document.getElementById("status");
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const data = new FormData(form);
+
+  try {
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: data,
+      headers: {
+        "Accept": "application/json"
+      }
+    });
+
+    if (response.ok) {
+      status.textContent = "Thank you! Redirecting...";
+      form.reset();
+
+      setTimeout(() => {
+        window.location.href = "index.html";
+        // or "/" if your homepage is at the site root
+      }, 1500);
+
+    } else {
+      status.textContent = "Sorry, your message couldn't be sent.";
+    }
+
+  } catch (error) {
+    status.textContent = "Network error. Please try again.";
+  }
+});
