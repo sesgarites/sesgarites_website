@@ -316,11 +316,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const otherWrap = document.getElementById("sg-other-wrap");
 
   // Hide "Please specify"
-  otherWrap.style.display = "none";
-
+ // Ensure it starts hidden
+   otherWrap.hidden = true;
+  
   source.addEventListener("change", () => {
-    otherWrap.style.display =
-      source.value === "Other" ? "flex" : "none";
+    otherWrap.hidden = source.value !== "Other";
   });
 
   form.addEventListener("submit", async (event) => {
