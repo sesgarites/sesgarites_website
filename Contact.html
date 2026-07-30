@@ -18,6 +18,9 @@
 </script>
 
 <style>
+  [hidden] {
+  display: none !important;
+  }
   :root {
     --stone: #c8b89a;
     --stone-light: #e8ddd0;
@@ -299,6 +302,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
+    // Run the browser's built-in validation
+    if (!form.reportValidity()) {
+      return;
+    }
 
     try {
       const response = await fetch(form.action, {
