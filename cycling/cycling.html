@@ -38,13 +38,7 @@
     position: relative;
     height: 92vh;
     min-height: 600px;
-    background: linear-gradient(
-      160deg,
-      rgba(26, 42, 26, 0.7) 0%,
-      rgba(42, 61, 42, 0.7) 30%,
-      rgba(61, 80, 48, 0.7) 60%,
-      rgba(26, 40, 24, 0.7) 100%
-    ), url('PalsGravel.jpg') center/cover no-repeat;
+    background: url('PalsGravel.jpg') center/cover no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -390,6 +384,97 @@
     opacity: 0.9;
   }
 
+  /* ── IMAGE MODAL ── */
+  .image-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    animation: fadeIn 0.3s ease;
+  }
+
+  .image-modal.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-image {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .modal-close:hover {
+    opacity: 0.7;
+  }
+
+  .modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 1rem;
+    user-select: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .modal-nav:hover {
+    opacity: 0.7;
+  }
+
+  .modal-prev {
+    left: -60px;
+  }
+
+  .modal-next {
+    right: -60px;
+  }
+
+  .modal-counter {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+  }
+
   /* ── GPX DOWNLOAD LINK ── */
   .route-gpx {
     display: inline-flex;
@@ -628,10 +713,33 @@
     .route-stats { gap: 1rem; }
     .images-grid { grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); }
     .image-thumb { height: 60px; }
+    .modal-nav {
+      font-size: 24px;
+      padding: 0.5rem;
+    }
+    .modal-prev {
+      left: -40px;
+    }
+    .modal-next {
+      right: -40px;
+    }
   }
 </style>
 </head>
 <body>
+
+<!-- ── IMAGE MODAL ── -->
+<div id="imageModal" class="image-modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <span class="modal-nav modal-prev">&lt;</span>
+    <img id="modalImage" class="modal-image" src="" alt="">
+    <span class="modal-nav modal-next">&gt;</span>
+    <div class="modal-counter">
+      <span id="currentImage">1</span> / <span id="totalImages">5</span>
+    </div>
+  </div>
+</div>
 
 <!-- ── HERO ── -->
 <section class="hero">
@@ -713,21 +821,21 @@
       </ul>
       
       <div class="route-images">
-        <p style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.8rem;">Route photos</p>
-        <div class="images-grid">
-          <div class="image-thumb">
+        <p style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.8rem;">Route photos (click to view)</p>
+        <div class="images-grid" data-route="petit-tren">
+          <div class="image-thumb" data-image="CalellaCoast.jpg">
             <img src="CalellaCoast.jpg" alt="Calella Coast" title="Calella Coast">
           </div>
-          <div class="image-thumb">
+          <div class="image-thumb" data-image="CastellHills.jpg">
             <img src="CastellHills.jpg" alt="Castell Hills" title="Castell Hills">
           </div>
-          <div class="image-thumb">
+          <div class="image-thumb" data-image="PalafrugellGravel.jpg">
             <img src="PalafrugellGravel.jpg" alt="Palafrugell Gravel" title="Palafrugell Gravel">
           </div>
-          <div class="image-thumb">
+          <div class="image-thumb" data-image="PalsGravel.jpg">
             <img src="PalsGravel.jpg" alt="Pals Gravel" title="Pals Gravel">
           </div>
-          <div class="image-thumb">
+          <div class="image-thumb" data-image="Petit.jpg">
             <img src="Petit.jpg" alt="Petit" title="Petit">
           </div>
         </div>
@@ -775,18 +883,18 @@
       </ul>
 
       <div class="route-images">
-        <p style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.8rem;">Route photos</p>
-        <div class="images-grid">
-          <div class="image-thumb">
+        <p style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.8rem;">Route photos (click to view)</p>
+        <div class="images-grid" data-route="dos-kiwis">
+          <div class="image-thumb" data-image="Fluvia.jpg">
             <img src="Fluvia.jpg" alt="Fluvia" title="Fluvia">
           </div>
-          <div class="image-thumb">
+          <div class="image-thumb" data-image="Sunflowers.jpg">
             <img src="Sunflowers.jpg" alt="Sunflowers" title="Sunflowers">
           </div>
-          <div class="image-thumb">
+          <div class="image-thumb" data-image="Towns1.jpg">
             <img src="Towns1.jpg" alt="Towns" title="Towns">
           </div>
-          <div class="image-thumb">
+          <div class="image-thumb" data-image="Towns2.jpg">
             <img src="Towns2.jpg" alt="Towns" title="Towns">
           </div>
         </div>
@@ -931,6 +1039,79 @@
   </p>
   <a href="#" class="cta-btn">Check availability</a>
 </section>
+
+<script>
+  let currentRoute = null;
+  let currentImageIndex = 0;
+  let currentImages = [];
+
+  const modal = document.getElementById('imageModal');
+  const modalImage = document.getElementById('modalImage');
+  const modalClose = document.querySelector('.modal-close');
+  const modalPrev = document.querySelector('.modal-prev');
+  const modalNext = document.querySelector('.modal-next');
+  const currentImageSpan = document.getElementById('currentImage');
+  const totalImagesSpan = document.getElementById('totalImages');
+
+  // Setup click handlers for image thumbnails
+  document.querySelectorAll('.image-thumb').forEach(thumb => {
+    thumb.addEventListener('click', function(e) {
+      e.preventDefault();
+      const grid = this.closest('.images-grid');
+      const routeName = grid.getAttribute('data-route');
+      const allThumbs = grid.querySelectorAll('.image-thumb');
+      
+      currentRoute = routeName;
+      currentImages = Array.from(allThumbs).map(t => t.getAttribute('data-image'));
+      currentImageIndex = Array.from(allThumbs).indexOf(this);
+      
+      totalImagesSpan.textContent = currentImages.length;
+      showImage();
+      modal.classList.add('active');
+    });
+  });
+
+  function showImage() {
+    if (currentImages.length > 0) {
+      modalImage.src = currentImages[currentImageIndex];
+      currentImageSpan.textContent = currentImageIndex + 1;
+    }
+  }
+
+  modalClose.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  modalPrev.addEventListener('click', () => {
+    currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+    showImage();
+  });
+
+  modalNext.addEventListener('click', () => {
+    currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+    showImage();
+  });
+
+  // Close modal when clicking outside the image
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (modal.classList.contains('active')) {
+      if (e.key === 'ArrowLeft') {
+        modalPrev.click();
+      } else if (e.key === 'ArrowRight') {
+        modalNext.click();
+      } else if (e.key === 'Escape') {
+        modalClose.click();
+      }
+    }
+  });
+</script>
 
 </body>
 </html>
