@@ -37,7 +37,7 @@
   .hero {
     position: relative;
     height: 92vh;
-    min-height: 600px;
+    min-height: 500px;
     background: linear-gradient(
       160deg,
       #1A2A1A 0%,
@@ -89,8 +89,8 @@
     position: absolute;
     bottom: 20px;
     right: 40px;
-    width: 560px;
-    height: 360px;
+    width: 480px;
+    height: 310px;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -185,33 +185,6 @@
     flex-wrap: wrap;
   }
 
-  .stat {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    min-width: 120px;
-  }
-
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: var(--gold);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-  }
-
-  .stat-divider {
-    width: 1px;
-    height: 48px;
-    background: rgba(255,255,255,0.12);
-  }
 
   .intro-text {
     flex: 1;
@@ -529,80 +502,6 @@
     height: 14px;
   }
 
-  /* ── FEATURED ROUTE ── */
-  .featured-section {
-    background: var(--dark);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .featured-section::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
-  }
-
-  .featured-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  @media (max-width: 768px) {
-    .featured-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  }
-
-  .featured-section .section-title { color: #fff; }
-  .featured-section .section-intro { color: rgba(255,255,255,0.55); }
-
-  .featured-visual {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    background: rgba(255,255,255,0.06);
-  }
-
-  .feat-row {
-    display: flex;
-    align-items: stretch;
-    background: rgba(255,255,255,0.04);
-    border-left: 2px solid rgba(201,168,76,0.3);
-    padding: 1rem 1.2rem;
-    gap: 1rem;
-  }
-
-  .feat-km {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    color: var(--gold);
-    min-width: 64px;
-    line-height: 1;
-    padding-top: 0.15rem;
-  }
-
-  .feat-stop {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .feat-stop-name {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #fff;
-  }
-
-  .feat-stop-note {
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.45);
-    font-style: italic;
-  }
 
   /* ── PRACTICAL ── */
   .practical-section { background: var(--rice); }
@@ -645,63 +544,6 @@
   }
 
   .prac-body a:hover { text-decoration: underline; }
-
-  /* ── SEASON BAR ── */
-  .season-section { background: var(--cream); }
-
-  .season-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 4px;
-    margin-bottom: 1rem;
-  }
-
-  .month {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .month-name {
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .month-bar {
-    width: 100%;
-    height: 28px;
-    border-radius: 2px;
-  }
-
-  .great   { background: var(--sage); }
-  .good    { background: var(--gold); opacity: 0.7; }
-  .ok      { background: var(--rice); border: 1px solid var(--muted); opacity: 0.5; }
-  .avoid   { background: #ccc; opacity: 0.35; }
-
-  .season-legend {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    margin-top: 0.8rem;
-  }
-
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-
-  .legend-dot {
-    width: 12px; height: 12px;
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
 
   /* ── CTA ── */
   .cta-section {
@@ -751,9 +593,7 @@
     .intro-strip { flex-direction: column; gap: 1.5rem; }
     .stat-divider { width: 48px; height: 1px; }
     section { padding: 3.5rem 5vw; }
-    .season-grid { grid-template-columns: repeat(6, 1fr); }
     .month-name { font-size: 0.5rem; }
-    .featured-visual { margin-top: 1rem; }
     .route-stats { gap: 1rem; }
     .images-grid { grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); }
     .image-thumb { height: 60px; }
@@ -866,21 +706,21 @@
             <img src="CalellaCoast.jpg" alt="Calella Coast" title="Calella Coast">
           </div>
           <div class="image-thumb" data-image="CastellHills.jpg">
-            <img src="CastellHills.jpg" alt="Castell Hills" title="Castell Hills">
+            <img loading="lazy" decoding="async" src="CastellHills.jpg" alt="Castell Hills" title="Castell Hills">
           </div>
           <div class="image-thumb" data-image="PalafrugellGravel.jpg">
-            <img src="PalafrugellGravel.jpg" alt="Palafrugell Gravel" title="Palafrugell Gravel">
+            <img loading="lazy" decoding="async" src="PalafrugellGravel.jpg" alt="Palafrugell Gravel" title="Palafrugell Gravel">
           </div>
           <div class="image-thumb" data-image="PalsGravel.jpg">
-            <img src="PalsGravel.jpg" alt="Pals Gravel" title="Pals Gravel">
+            <img loading="lazy" decoding="async" src="PalsGravel.jpg" alt="Pals Gravel" title="Pals Gravel">
           </div>
           <div class="image-thumb" data-image="Petit.jpg">
-            <img src="Petit.jpg" alt="Petit" title="Petit">
+            <img loading="lazy" decoding="async" src="Petit.jpg" alt="Petit" title="Petit">
           </div>
         </div>
       </div>
 
-      <a href="SSes Garites - Petit Carrilet.gpx" download class="route-gpx">
+      <a href="Ses Garites - Petit Carrilet.gpx" download class="route-gpx">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
           <polyline points="7 10 12 15 17 10"></polyline>
@@ -928,13 +768,13 @@
             <img src="Fluvia.jpg" alt="Fluvia" title="Fluvia">
           </div>
           <div class="image-thumb" data-image="Sunflowers.jpg">
-            <img src="Sunflowers.jpg" alt="Sunflowers" title="Sunflowers">
+            <img loading="lazy" decoding="async" src="Sunflowers.jpg" alt="Sunflowers" title="Sunflowers">
           </div>
           <div class="image-thumb" data-image="Towns1.jpg">
-            <img src="Towns1.jpg" alt="Towns" title="Towns">
+            <img loading="lazy" decoding="async" src="Towns1.jpg" alt="Towns" title="Towns">
           </div>
           <div class="image-thumb" data-image="Towns2.jpg">
-            <img src="Towns2.jpg" alt="Towns" title="Towns">
+            <img loading="lazy" decoding="async" src="Towns2.jpg" alt="Towns" title="Towns">
           </div>
         </div>
       </div>
@@ -1010,7 +850,7 @@
 </section>
 
 <script>
-  let currentRoute = null;
+
   let currentImageIndex = 0;
   let currentImages = [];
 
@@ -1030,7 +870,6 @@
       const routeName = grid.getAttribute('data-route');
       const allThumbs = grid.querySelectorAll('.image-thumb');
       
-      currentRoute = routeName;
       currentImages = Array.from(allThumbs).map(t => t.getAttribute('data-image'));
       currentImageIndex = Array.from(allThumbs).indexOf(this);
       
