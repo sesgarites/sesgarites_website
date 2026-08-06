@@ -1,3 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cycling from Ses Garites · Pals, Costa Brava</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold:      #C9A84C;
+    --gold-lt:   #E8D08A;
+    --dark:      #1A1A1A;
+    --stone:     #3D3530;
+    --cream:     #FAF8F3;
+    --rice:      #E8E4D4;
+    --sage:      #6B8F71;
+    --sky:       #4A7FA5;
+    --text:      #2C2820;
+    --muted:     #7A7060;
+    --easy:      #6B8F71;
+    --moderate:  #C9A84C;
+    --hard:      #A84C4C;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 92vh;
+    min-height: 600px;
+    background: linear-gradient(
+      160deg,
+      #1A2A1A 0%,
+      #2A3D2A 30%,
+      #3D5030 60%,
+      #1A2818 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  /* Animated rice field stripes */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      175deg,
+      transparent 0px,
+      transparent 18px,
+      rgba(139,174,100,0.08) 18px,
+      rgba(139,174,100,0.08) 20px
+    );
+  }
+
+  /* Golden horizon glow */
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 45%;
+    background: linear-gradient(to top, rgba(201,168,76,0.18) 0%, transparent 100%);
+  }
+
+  .hero-dots {
+    position: absolute;
+    top: 0; right: 0;
+    width: 45%;
+    height: 100%;
+    background-image:
+      radial-gradient(circle, rgba(201,168,76,0.12) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
   /* Image overlay */
   .hero-image-overlay {
     position: absolute;
@@ -17,3 +103,1068 @@
     height: 100%;
     object-fit: cover;
   }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 6vw 7vh;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-lt);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.72);
+    max-width: 520px;
+    line-height: 1.7;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 6vw;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .scroll-hint svg { animation: bounce 2s infinite; }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(6px); }
+  }
+
+  /* ── INTRO STRIP ── */
+  .intro-strip {
+    background: var(--dark);
+    padding: 2.5rem 6vw;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 120px;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 48px;
+    background: rgba(255,255,255,0.12);
+  }
+
+  .intro-text {
+    flex: 1;
+    min-width: 260px;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.75;
+    font-weight: 300;
+    border-left: 2px solid var(--gold);
+    padding-left: 1.5rem;
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 5rem 6vw; }
+
+  .section-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 400;
+    color: var(--stone);
+    line-height: 1.15;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-intro {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 600px;
+    line-height: 1.75;
+    margin-bottom: 3rem;
+  }
+
+  /* ── ROUTES GRID ── */
+  .routes-section { background: var(--cream); }
+
+  .routes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2px;
+    background: var(--rice);
+    border: 2px solid var(--rice);
+  }
+
+  .route-card {
+    background: var(--cream);
+    padding: 2.2rem;
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+
+  .route-card:hover { transform: translateY(-3px); }
+
+  .route-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+  }
+
+  .route-card.easy::before   { background: var(--easy); }
+  .route-card.moderate::before { background: var(--moderate); }
+  .route-card.hard::before   { background: var(--hard); }
+
+  .route-difficulty {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 2px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .easy   .route-difficulty { background: rgba(107,143,113,0.12); color: var(--easy); }
+  .moderate .route-difficulty { background: rgba(201,168,76,0.12); color: var(--moderate); }
+  .hard   .route-difficulty { background: rgba(168,76,76,0.12); color: var(--hard); }
+
+  .route-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--stone);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .route-tagline {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 1.4rem;
+    line-height: 1.5;
+  }
+
+  .route-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.4rem;
+    flex-wrap: wrap;
+  }
+
+  .route-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .route-stat-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--dark);
+    line-height: 1;
+  }
+
+  .route-stat-key {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .route-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.4rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rice);
+  }
+
+  .route-highlights {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .route-highlights li {
+    font-size: 0.85rem;
+    color: var(--text);
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+  }
+
+  .route-highlights li::before {
+    content: '→';
+    color: var(--gold);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  /* ── ROUTE IMAGES GALLERY ── */
+  .route-images {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rice);
+  }
+
+  .images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 0.6rem;
+  }
+
+  .image-thumb {
+    width: 100%;
+    height: 80px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .image-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .image-thumb:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+
+  /* ── IMAGE MODAL ── */
+  .image-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    animation: fadeIn 0.3s ease;
+  }
+
+  .image-modal.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-image {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .modal-close:hover {
+    opacity: 0.7;
+  }
+
+  .modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 1rem;
+    user-select: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .modal-nav:hover {
+    opacity: 0.7;
+  }
+
+  .modal-prev {
+    left: -60px;
+  }
+
+  .modal-next {
+    right: -60px;
+  }
+
+  .modal-counter {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── GPX DOWNLOAD LINK ── */
+  .route-gpx {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+    padding: 0.6rem 1rem;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .route-gpx:hover {
+    background: rgba(201,168,76,0.2);
+  }
+
+  .route-gpx svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* ── FEATURED ROUTE ── */
+  .featured-section {
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-section::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+  }
+
+  .featured-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    .featured-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  .featured-section .section-title { color: #fff; }
+  .featured-section .section-intro { color: rgba(255,255,255,0.55); }
+
+  .featured-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .feat-row {
+    display: flex;
+    align-items: stretch;
+    background: rgba(255,255,255,0.04);
+    border-left: 2px solid rgba(201,168,76,0.3);
+    padding: 1rem 1.2rem;
+    gap: 1rem;
+  }
+
+  .feat-km {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    min-width: 64px;
+    line-height: 1;
+    padding-top: 0.15rem;
+  }
+
+  .feat-stop {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .feat-stop-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .feat-stop-note {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    font-style: italic;
+  }
+
+  /* ── PRACTICAL ── */
+  .practical-section { background: var(--rice); }
+
+  .practical-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .prac-card {
+    background: var(--cream);
+    padding: 1.8rem;
+    border-top: 3px solid var(--gold);
+  }
+
+  .prac-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .prac-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--stone);
+    margin-bottom: 0.6rem;
+  }
+
+  .prac-body {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .prac-body a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .prac-body a:hover { text-decoration: underline; }
+
+  /* ── SEASON BAR ── */
+  .season-section { background: var(--cream); }
+
+  .season-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .month {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .month-name {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .month-bar {
+    width: 100%;
+    height: 28px;
+    border-radius: 2px;
+  }
+
+  .great   { background: var(--sage); }
+  .good    { background: var(--gold); opacity: 0.7; }
+  .ok      { background: var(--rice); border: 1px solid var(--muted); opacity: 0.5; }
+  .avoid   { background: #ccc; opacity: 0.35; }
+
+  .season-legend {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.8rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .legend-dot {
+    width: 12px; height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--stone);
+    text-align: center;
+    padding: 5rem 6vw;
+  }
+
+  .cta-section .section-title { color: #fff; margin-bottom: 1rem; }
+  .cta-section .section-intro { color: rgba(255,255,255,0.55); margin: 0 auto 2.5rem; text-align: center; }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 0.9rem 2.4rem;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .cta-btn:hover { background: var(--gold-lt); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 1024px) {
+    .hero-image-overlay {
+      width: 440px;
+      height: 280px;
+      bottom: 15px;
+      right: 30px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-image-overlay {
+      width: 360px;
+      height: 230px;
+      bottom: 10px;
+      right: 20px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .intro-strip { flex-direction: column; gap: 1.5rem; }
+    .stat-divider { width: 48px; height: 1px; }
+    section { padding: 3.5rem 5vw; }
+    .season-grid { grid-template-columns: repeat(6, 1fr); }
+    .month-name { font-size: 0.5rem; }
+    .featured-visual { margin-top: 1rem; }
+    .route-stats { gap: 1rem; }
+    .images-grid { grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); }
+    .image-thumb { height: 60px; }
+    .modal-nav {
+      font-size: 24px;
+      padding: 0.5rem;
+    }
+    .modal-prev {
+      left: -40px;
+    }
+    .modal-next {
+      right: -40px;
+    }
+    .hero-image-overlay {
+      width: 280px;
+      height: 180px;
+      bottom: 8px;
+      right: 15px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── IMAGE MODAL ── -->
+<div id="imageModal" class="image-modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <span class="modal-nav modal-prev">&lt;</span>
+    <img id="modalImage" class="modal-image" src="" alt="">
+    <span class="modal-nav modal-next">&gt;</span>
+    <div class="modal-counter">
+      <span id="currentImage">1</span> / <span id="totalImages">5</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-image-overlay">
+    <img src="PalsGravel.jpg" alt="Pals Gravel cycling route">
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Ses Garites · Pals, Costa Brava</p>
+    <h1>Pedal through <em>rice fields,<br>medieval villages</em><br>& hidden coves.</h1>
+    <p class="hero-sub">Some of Catalonia's finest cycling begins right outside our gate — from flat family rides through golden rice paddies to challenging climbs above the Costa Brava.</p>
+  </div>
+  <div class="scroll-hint">
+    <span>Discover routes</span>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M8 3v10M3 9l5 5 5-5" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ── INTRO STRIP ── -->
+<div class="intro-strip">
+  <div class="stat">
+    <span class="stat-num">2</span>
+    <span class="stat-label">Epic gravel routes</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <span class="stat-num">8km</span>
+    <span class="stat-label">From your door to the coast</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <span class="stat-num">300+</span>
+    <span class="stat-label">Days of cycling weather</span>
+  </div>
+  <div class="stat-divider"></div>
+  <p class="intro-text">
+    Ses Garites sits at the heart of the Baix Empordà — rice fields to the east, medieval hilltop villages to the west, and 
+    the wild Costa Brava coast just a short ride south. Whether you're a family looking for a gentle afternoon or a gravel cyclist 
+    hunting a real challenge, the terrain delivers.
+  </p>
+</div>
+
+<!-- ── ROUTES ── -->
+<section class="routes-section">
+  <p class="section-label">Cycling routes</p>
+  <h2 class="section-title">Two unforgettable gravel adventures</h2>
+  <p class="section-intro">Both routes start directly from Ses Garites. Download GPS tracks and explore at your own pace.</p>
+
+  <div class="routes-grid">
+
+    <!-- Route 1: Petit Tren -->
+    <div class="route-card moderate">
+      <span class="route-difficulty">● Moderate</span>
+      <h3 class="route-name">Petit Tren</h3>
+      <p class="route-tagline">A scenic loop through stunning coastal vistas and gravel tracks</p>
+      <div class="route-stats">
+        <div class="route-stat">
+          <span class="route-stat-val">~38 km</span>
+          <span class="route-stat-key">Distance</span>
+        </div>
+        <div class="route-stat">
+          <span class="route-stat-val">~320 m</span>
+          <span class="route-stat-key">Elevation</span>
+        </div>
+        <div class="route-stat">
+          <span class="route-stat-val">3–4 h</span>
+          <span class="route-stat-key">Duration</span>
+        </div>
+      </div>
+      <p class="route-desc">
+        Experience the magic of the Costa Brava as you pedal through rolling gravel tracks with sweeping coastal views. 
+        This route combines technical terrain with spectacular Mediterranean landscapes, passing through hidden villages 
+        and pine forests. Perfect for adventurous cyclists seeking authentic Catalan countryside.
+      </p>
+      <ul class="route-highlights">
+        <li>Ses Garites → coastal ridges → medieval villages → return</li>
+        <li>Mix of gravel tracks and quiet country roads</li>
+        <li>Multiple photo opportunities with coastal panoramas</li>
+        <li>Gravel bike recommended, road bike possible on some sections</li>
+      </ul>
+      
+      <div class="route-images">
+        <p style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.8rem;">Route photos (click to view)</p>
+        <div class="images-grid" data-route="petit-tren">
+          <div class="image-thumb" data-image="CalellaCoast.jpg">
+            <img src="CalellaCoast.jpg" alt="Calella Coast" title="Calella Coast">
+          </div>
+          <div class="image-thumb" data-image="CastellHills.jpg">
+            <img src="CastellHills.jpg" alt="Castell Hills" title="Castell Hills">
+          </div>
+          <div class="image-thumb" data-image="PalafrugellGravel.jpg">
+            <img src="PalafrugellGravel.jpg" alt="Palafrugell Gravel" title="Palafrugell Gravel">
+          </div>
+          <div class="image-thumb" data-image="PalsGravel.jpg">
+            <img src="PalsGravel.jpg" alt="Pals Gravel" title="Pals Gravel">
+          </div>
+          <div class="image-thumb" data-image="Petit.jpg">
+            <img src="Petit.jpg" alt="Petit" title="Petit">
+          </div>
+        </div>
+      </div>
+
+      <a href="Ses Garites - Rustik-_DosKiwis-_Pals Gravel.gpx" download class="route-gpx">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download GPS Track
+      </a>
+    </div>
+
+    <!-- Route 2: Dos Kiwis -->
+    <div class="route-card moderate">
+      <span class="route-difficulty">● Moderate</span>
+      <h3 class="route-name">Dos Kiwis</h3>
+      <p class="route-tagline">Rice fields, hidden villages, and authentic rural Catalonia</p>
+      <div class="route-stats">
+        <div class="route-stat">
+          <span class="route-stat-val">~42 km</span>
+          <span class="route-stat-key">Distance</span>
+        </div>
+        <div class="route-stat">
+          <span class="route-stat-val">~280 m</span>
+          <span class="route-stat-key">Elevation</span>
+        </div>
+        <div class="route-stat">
+          <span class="route-stat-val">3–4.5 h</span>
+          <span class="route-stat-key">Duration</span>
+        </div>
+      </div>
+      <p class="route-desc">
+        Immerse yourself in the heart of the Baix Empordà. This gravel adventure takes you through iconic rice paddies, 
+        past sunflower fields, and into picturesque Catalan towns. You'll discover why Josep Pla called this region 
+        "one of the most beautiful parts of Catalonia" — pedal at your own pace and soak it all in.
+      </p>
+      <ul class="route-highlights">
+        <li>Ses Garites → rice fields → Fluvia valley → countryside towns</li>
+        <li>Mostly gravel with easy navigation</li>
+        <li>Stunning seasonal color changes (green fields in spring, gold in autumn)</li>
+        <li>Suitable for gravel bikes and sturdy road bikes</li>
+      </ul>
+
+      <div class="route-images">
+        <p style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.8rem;">Route photos (click to view)</p>
+        <div class="images-grid" data-route="dos-kiwis">
+          <div class="image-thumb" data-image="Fluvia.jpg">
+            <img src="Fluvia.jpg" alt="Fluvia" title="Fluvia">
+          </div>
+          <div class="image-thumb" data-image="Sunflowers.jpg">
+            <img src="Sunflowers.jpg" alt="Sunflowers" title="Sunflowers">
+          </div>
+          <div class="image-thumb" data-image="Towns1.jpg">
+            <img src="Towns1.jpg" alt="Towns" title="Towns">
+          </div>
+          <div class="image-thumb" data-image="Towns2.jpg">
+            <img src="Towns2.jpg" alt="Towns" title="Towns">
+          </div>
+        </div>
+      </div>
+
+      <a href="Rustik-DosKiwis-Pals Gravel.gpx" download class="route-gpx">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download GPS Track
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PRACTICAL INFO ── -->
+<section class="practical-section">
+  <p class="section-label">Before you ride</p>
+  <h2 class="section-title">Everything you need to know</h2>
+  <p class="section-intro">We're happy to help with routes, conditions, and recommendations — just ask at check-in.</p>
+
+  <div class="practical-grid">
+    <div class="prac-card">
+      <span class="prac-icon">🚲</span>
+      <h3 class="prac-title">Bike rental nearby</h3>
+      <p class="prac-body">
+        <strong>Aliveness Cycling</strong> — local specialist with road, gravel, MTB & e-bikes. 
+        GPS tracks included.<br><br>
+        <strong>Bravamar</strong> — closer to the beach, good for casual rides & e-bikes.<br><br>
+        We recommend booking ahead in July & August.
+      </p>
+    </div>
+    <div class="prac-card">
+      <span class="prac-icon">📍</span>
+      <h3 class="prac-title">GPS tracks & maps</h3>
+      <p class="prac-body">
+        Download the GPX files directly from each route above. Compatible with Komoot, Wikiloc, Garmin, and all major GPS apps.<br><br>
+        Paper maps of the Baix Empordà cycling network are available at the Pals tourist office (5 min away).
+      </p>
+    </div>
+    <div class="prac-card">
+      <span class="prac-icon">🛠</span>
+      <h3 class="prac-title">What to bring</h3>
+      <p class="prac-body">
+        Water (at least 1.5–2L), sun cream, and a snack. 
+        In summer, start before 10am for best conditions. 
+        A basic repair kit and spare tube are essential on gravel routes.<br><br>
+        We have a bike pump and tools available at the property.
+      </p>
+    </div>
+    <div class="prac-card">
+      <span class="prac-icon">🍽</span>
+      <h3 class="prac-title">Mid-ride stops</h3>
+      <p class="prac-body">
+        <strong>Grava Pals</strong> — off-the-grid bike café in Pals, perfect for cyclists. 
+        Coffee, tapas, gravel vibes.<br><br>
+        <strong>Can Padres</strong> — legendary rotisserie chicken just outside Pals. 
+        A classic post-ride reward.<br><br>
+        Beach bars at Platja de Pals open June–September.
+      </p>
+    </div>
+    <div class="prac-card">
+      <span class="prac-icon">🌬</span>
+      <h3 class="prac-title">The Tramuntana wind</h3>
+      <p class="prac-body">
+        The Empordà is known for its strong northerly wind — the <em>Tramuntana</em>. 
+        It can make cycling difficult and is strongest in winter and spring. 
+        On windless days, the open rice fields feel magical. 
+        Check the forecast: <a href="https://www.windy.com" target="_blank">windy.com</a> is reliable.
+      </p>
+    </div>
+    <div class="prac-card">
+      <span class="prac-icon">🏨</span>
+      <h3 class="prac-title">At Ses Garites</h3>
+      <p class="prac-body">
+        We have secure bike storage, a garden hose to clean bikes after muddy rides, 
+        and a shaded area to repair or prep your bike.<br><br>
+        Ask us at check-in for current route conditions, seasonal recommendations, 
+        and which tracks to avoid after rain.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── BEST SEASON ── -->
+<section class="season-section">
+  <p class="section-label">When to ride</p>
+  <h2 class="section-title">Almost year-round — but timing matters</h2>
+  <p class="section-intro">The Empordà offers cycling in every month, but each season has a character of its own.</p>
+
+  <div class="season-grid">
+    <div class="month"><span class="month-name">Jan</span><div class="month-bar ok"></div></div>
+    <div class="month"><span class="month-name">Feb</span><div class="month-bar ok"></div></div>
+    <div class="month"><span class="month-name">Mar</span><div class="month-bar good"></div></div>
+    <div class="month"><span class="month-name">Apr</span><div class="month-bar great"></div></div>
+    <div class="month"><span class="month-name">May</span><div class="month-bar great"></div></div>
+    <div class="month"><span class="month-name">Jun</span><div class="month-bar great"></div></div>
+    <div class="month"><span class="month-name">Jul</span><div class="month-bar good"></div></div>
+    <div class="month"><span class="month-name">Aug</span><div class="month-bar good"></div></div>
+    <div class="month"><span class="month-name">Sep</span><div class="month-bar great"></div></div>
+    <div class="month"><span class="month-name">Oct</span><div class="month-bar great"></div></div>
+    <div class="month"><span class="month-name">Nov</span><div class="month-bar good"></div></div>
+    <div class="month"><span class="month-name">Dec</span><div class="month-bar ok"></div></div>
+  </div>
+
+  <div class="season-legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--sage)"></div> Ideal</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--gold); opacity:0.7"></div> Good</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--rice); border:1px solid var(--muted)"></div> Manageable</div>
+  </div>
+
+  <div style="margin-top:2.5rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem;">
+    <div>
+      <p style="font-weight:600; color:var(--stone); font-size:0.9rem; margin-bottom:0.4rem;">Spring (Apr–Jun) ★</p>
+      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">The sweet spot. Warm days, the rice fields freshly flooded, wildflowers on the roadsides, and no summer crowds. Our favourite season for gravel riding.</p>
+    </div>
+    <div>
+      <p style="font-weight:600; color:var(--stone); font-size:0.9rem; margin-bottom:0.4rem;">Summer (Jul–Aug)</p>
+      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Hot — start early morning before 10am and you'll be rewarded. The rice fields are at their most lush and intensely green. Plan shorter rides in the heat.</p>
+    </div>
+    <div>
+      <p style="font-weight:600; color:var(--stone); font-size:0.9rem; margin-bottom:0.4rem;">Autumn (Sep–Oct) ★</p>
+      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Arguably the best. Harvest season turns the fields golden, the light is extraordinary, and the roads are quiet. Perfect temperatures for long gravel rides.</p>
+    </div>
+    <div>
+      <p style="font-weight:600; color:var(--stone); font-size:0.9rem; margin-bottom:0.4rem;">Winter (Nov–Mar)</p>
+      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Mild and peaceful. The Tramuntana wind can be strong — check forecasts. On calm days, the light and solitude are unbeatable for introspective gravel cycling.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <p class="section-label" style="color:var(--gold)">Ready to explore</p>
+  <h2 class="section-title">Book your stay at Ses Garites</h2>
+  <p class="section-intro">
+    Wake up to rice fields, clip in, and discover the Empordà at your own pace. 
+    The best gravel routes in Catalonia start right outside our gate.
+  </p>
+  <a href="#" class="cta-btn">Check availability</a>
+</section>
+
+<script>
+  let currentRoute = null;
+  let currentImageIndex = 0;
+  let currentImages = [];
+
+  const modal = document.getElementById('imageModal');
+  const modalImage = document.getElementById('modalImage');
+  const modalClose = document.querySelector('.modal-close');
+  const modalPrev = document.querySelector('.modal-prev');
+  const modalNext = document.querySelector('.modal-next');
+  const currentImageSpan = document.getElementById('currentImage');
+  const totalImagesSpan = document.getElementById('totalImages');
+
+  // Setup click handlers for image thumbnails
+  document.querySelectorAll('.image-thumb').forEach(thumb => {
+    thumb.addEventListener('click', function(e) {
+      e.preventDefault();
+      const grid = this.closest('.images-grid');
+      const routeName = grid.getAttribute('data-route');
+      const allThumbs = grid.querySelectorAll('.image-thumb');
+      
+      currentRoute = routeName;
+      currentImages = Array.from(allThumbs).map(t => t.getAttribute('data-image'));
+      currentImageIndex = Array.from(allThumbs).indexOf(this);
+      
+      totalImagesSpan.textContent = currentImages.length;
+      showImage();
+      modal.classList.add('active');
+    });
+  });
+
+  function showImage() {
+    if (currentImages.length > 0) {
+      modalImage.src = currentImages[currentImageIndex];
+      currentImageSpan.textContent = currentImageIndex + 1;
+    }
+  }
+
+  modalClose.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  modalPrev.addEventListener('click', () => {
+    currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+    showImage();
+  });
+
+  modalNext.addEventListener('click', () => {
+    currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+    showImage();
+  });
+
+  // Close modal when clicking outside the image
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (modal.classList.contains('active')) {
+      if (e.key === 'ArrowLeft') {
+        modalPrev.click();
+      } else if (e.key === 'ArrowRight') {
+        modalNext.click();
+      } else if (e.key === 'Escape') {
+        modalClose.click();
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
