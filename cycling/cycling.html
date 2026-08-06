@@ -40,11 +40,11 @@
     min-height: 600px;
     background: linear-gradient(
       160deg,
-      #1A2A1A 0%,
-      #2A3D2A 30%,
-      #3D5030 60%,
-      #1A2818 100%
-    );
+      rgba(26, 42, 26, 0.7) 0%,
+      rgba(42, 61, 42, 0.7) 30%,
+      rgba(61, 80, 48, 0.7) 60%,
+      rgba(26, 40, 24, 0.7) 100%
+    ), url('PalsGravel.jpg') center/cover no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -357,6 +357,67 @@
     flex-shrink: 0;
   }
 
+  /* ── ROUTE IMAGES GALLERY ── */
+  .route-images {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rice);
+  }
+
+  .images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 0.6rem;
+  }
+
+  .image-thumb {
+    width: 100%;
+    height: 80px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .image-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .image-thumb:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+
+  /* ── GPX DOWNLOAD LINK ── */
+  .route-gpx {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+    padding: 0.6rem 1rem;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .route-gpx:hover {
+    background: rgba(201,168,76,0.2);
+  }
+
+  .route-gpx svg {
+    width: 14px;
+    height: 14px;
+  }
+
   /* ── FEATURED ROUTE ── */
   .featured-section {
     background: var(--dark);
@@ -565,6 +626,8 @@
     .month-name { font-size: 0.5rem; }
     .featured-visual { margin-top: 1rem; }
     .route-stats { gap: 1rem; }
+    .images-grid { grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); }
+    .image-thumb { height: 60px; }
   }
 </style>
 </head>
@@ -589,8 +652,8 @@
 <!-- ── INTRO STRIP ── -->
 <div class="intro-strip">
   <div class="stat">
-    <span class="stat-num">4</span>
-    <span class="stat-label">Curated routes</span>
+    <span class="stat-num">2</span>
+    <span class="stat-label">Epic gravel routes</span>
   </div>
   <div class="stat-divider"></div>
   <div class="stat">
@@ -605,7 +668,7 @@
   <div class="stat-divider"></div>
   <p class="intro-text">
     Ses Garites sits at the heart of the Baix Empordà — rice fields to the east, medieval hilltop villages to the west, and 
-    the wild Costa Brava coast just a short ride south. Whether you're a family looking for a gentle afternoon or a road cyclist 
+    the wild Costa Brava coast just a short ride south. Whether you're a family looking for a gentle afternoon or a gravel cyclist 
     hunting a real challenge, the terrain delivers.
   </p>
 </div>
@@ -613,51 +676,81 @@
 <!-- ── ROUTES ── -->
 <section class="routes-section">
   <p class="section-label">Cycling routes</p>
-  <h2 class="section-title">Four rides, one extraordinary landscape</h2>
-  <p class="section-intro">All routes start directly from Ses Garites. Distances and elevations are approximate — terrain varies with the season.</p>
+  <h2 class="section-title">Two unforgettable gravel adventures</h2>
+  <p class="section-intro">Both routes start directly from Ses Garites. Download GPS tracks and explore at your own pace.</p>
 
   <div class="routes-grid">
 
-    <!-- Route 1 -->
-    <div class="route-card easy">
-      <span class="route-difficulty">● Easy</span>
-      <h3 class="route-name">The Rice Fields Loop</h3>
-      <p class="route-tagline">Flat, peaceful, and quintessentially Empordà</p>
+    <!-- Route 1: Petit Tren -->
+    <div class="route-card moderate">
+      <span class="route-difficulty">● Moderate</span>
+      <h3 class="route-name">Petit Tren</h3>
+      <p class="route-tagline">A scenic loop through stunning coastal vistas and gravel tracks</p>
       <div class="route-stats">
         <div class="route-stat">
-          <span class="route-stat-val">20 km</span>
+          <span class="route-stat-val">~38 km</span>
           <span class="route-stat-key">Distance</span>
         </div>
         <div class="route-stat">
-          <span class="route-stat-val">~96 m</span>
+          <span class="route-stat-val">~320 m</span>
           <span class="route-stat-key">Elevation</span>
         </div>
         <div class="route-stat">
-          <span class="route-stat-val">1.5–2 h</span>
+          <span class="route-stat-val">3–4 h</span>
           <span class="route-stat-key">Duration</span>
         </div>
       </div>
       <p class="route-desc">
-        The most beautiful easy ride in the area. Follow flat tracks through Pals's famous rice paddies — 
-        vivid green in summer, golden at harvest — with the Medes Islands glittering on the horizon 
-        and the Montgrí massif as your backdrop. Suitable for all ages, including children and e-bikes.
+        Experience the magic of the Costa Brava as you pedal through rolling gravel tracks with sweeping coastal views. 
+        This route combines technical terrain with spectacular Mediterranean landscapes, passing through hidden villages 
+        and pine forests. Perfect for adventurous cyclists seeking authentic Catalan countryside.
       </p>
       <ul class="route-highlights">
-        <li>Ses Garites → rice fields of Pals → Platja de Pals beach → return</li>
-        <li>Stop at the beach bar for a cold drink mid-ride</li>
-        <li>Best in summer when the fields are intensely green</li>
-        <li>Suitable for children, families & e-bikes</li>
+        <li>Ses Garites → coastal ridges → medieval villages → return</li>
+        <li>Mix of gravel tracks and quiet country roads</li>
+        <li>Multiple photo opportunities with coastal panoramas</li>
+        <li>Gravel bike recommended, road bike possible on some sections</li>
       </ul>
+      
+      <div class="route-images">
+        <p style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.8rem;">Route photos</p>
+        <div class="images-grid">
+          <div class="image-thumb">
+            <img src="CalellaCoast.jpg" alt="Calella Coast" title="Calella Coast">
+          </div>
+          <div class="image-thumb">
+            <img src="CastellHills.jpg" alt="Castell Hills" title="Castell Hills">
+          </div>
+          <div class="image-thumb">
+            <img src="PalafrugellGravel.jpg" alt="Palafrugell Gravel" title="Palafrugell Gravel">
+          </div>
+          <div class="image-thumb">
+            <img src="PalsGravel.jpg" alt="Pals Gravel" title="Pals Gravel">
+          </div>
+          <div class="image-thumb">
+            <img src="Petit.jpg" alt="Petit" title="Petit">
+          </div>
+        </div>
+      </div>
+
+      <a href="Ses Garites - Rustik-_DosKiwis-_Pals Gravel.gpx" download class="route-gpx">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download GPS Track
+      </a>
     </div>
 
-    <!-- Route 2 -->
+    <!-- Route 2: Dos Kiwis -->
     <div class="route-card moderate">
       <span class="route-difficulty">● Moderate</span>
-      <h3 class="route-name">Medieval Villages Circuit</h3>
-      <p class="route-tagline">Three of Catalonia's most beautiful villages in one ride</p>
+      <h3 class="route-name">Dos Kiwis</h3>
+      <p class="route-tagline">Rice fields, hidden villages, and authentic rural Catalonia</p>
       <div class="route-stats">
         <div class="route-stat">
-          <span class="route-stat-val">35 km</span>
+          <span class="route-stat-val">~42 km</span>
           <span class="route-stat-key">Distance</span>
         </div>
         <div class="route-stat">
@@ -665,145 +758,118 @@
           <span class="route-stat-key">Elevation</span>
         </div>
         <div class="route-stat">
-          <span class="route-stat-val">2–3 h</span>
+          <span class="route-stat-val">3–4.5 h</span>
           <span class="route-stat-key">Duration</span>
         </div>
       </div>
       <p class="route-desc">
-        Wind through the medieval heart of the Baix Empordà. This classic circuit links Pals, 
-        Peratallada, and La Bisbal d'Empordà on quiet country lanes through vineyards, 
-        cork oak forests, and Catalan farmland. Peratallada — perfectly preserved since the Middle Ages — 
-        is the undisputed highlight.
+        Immerse yourself in the heart of the Baix Empordà. This gravel adventure takes you through iconic rice paddies, 
+        past sunflower fields, and into picturesque Catalan towns. You'll discover why Josep Pla called this region 
+        "one of the most beautiful parts of Catalonia" — pedal at your own pace and soak it all in.
       </p>
       <ul class="route-highlights">
-        <li>Ses Garites → Pals village → Peratallada → La Bisbal → return</li>
-        <li>Coffee stop in Peratallada's medieval square</li>
-        <li>Browse ceramics in La Bisbal on the way back</li>
-        <li>Rolling terrain with one or two short climbs</li>
+        <li>Ses Garites → rice fields → Fluvia valley → countryside towns</li>
+        <li>Mostly gravel with easy navigation</li>
+        <li>Stunning seasonal color changes (green fields in spring, gold in autumn)</li>
+        <li>Suitable for gravel bikes and sturdy road bikes</li>
       </ul>
-    </div>
 
-    <!-- Route 3 -->
-    <div class="route-card moderate">
-      <span class="route-difficulty">● Moderate</span>
-      <h3 class="route-name">Begur & the Coves</h3>
-      <p class="route-tagline">Rice fields, a castle hilltop, and wild Mediterranean coves</p>
-      <div class="route-stats">
-        <div class="route-stat">
-          <span class="route-stat-val">28 km</span>
-          <span class="route-stat-key">Distance</span>
-        </div>
-        <div class="route-stat">
-          <span class="route-stat-val">~397 m</span>
-          <span class="route-stat-key">Elevation</span>
-        </div>
-        <div class="route-stat">
-          <span class="route-stat-val">2.5–3.5 h</span>
-          <span class="route-stat-key">Duration</span>
+      <div class="route-images">
+        <p style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.8rem;">Route photos</p>
+        <div class="images-grid">
+          <div class="image-thumb">
+            <img src="Fluvia.jpg" alt="Fluvia" title="Fluvia">
+          </div>
+          <div class="image-thumb">
+            <img src="Sunflowers.jpg" alt="Sunflowers" title="Sunflowers">
+          </div>
+          <div class="image-thumb">
+            <img src="Towns1.jpg" alt="Towns" title="Towns">
+          </div>
+          <div class="image-thumb">
+            <img src="Towns2.jpg" alt="Towns" title="Towns">
+          </div>
         </div>
       </div>
-      <p class="route-desc">
-        This is the signature ride of the area — combining the flat rice field tracks with the 
-        climb up to Begur's ruined castle, rewarded by 360° views over the Costa Brava. 
-        Descend to one of Begur's coves for a swim before returning through the fields. 
-        Bring your swimsuit.
-      </p>
-      <ul class="route-highlights">
-        <li>Ses Garites → rice fields → Begur castle climb → Sa Riera cove → return</li>
-        <li>The castle viewpoint is one of the best on the Costa Brava</li>
-        <li>Swim at Sa Riera or Aiguablava mid-ride</li>
-        <li>Grab lunch in Begur village on the way back</li>
-      </ul>
-    </div>
 
-    <!-- Route 4 -->
-    <div class="route-card hard">
-      <span class="route-difficulty">● Challenging</span>
-      <h3 class="route-name">The Empordà Grand Tour</h3>
-      <p class="route-tagline">A full day's ride through the best of the region</p>
-      <div class="route-stats">
-        <div class="route-stat">
-          <span class="route-stat-val">50 km</span>
-          <span class="route-stat-key">Distance</span>
-        </div>
-        <div class="route-stat">
-          <span class="route-stat-val">~440 m</span>
-          <span class="route-stat-key">Elevation</span>
-        </div>
-        <div class="route-stat">
-          <span class="route-stat-val">3.5–5 h</span>
-          <span class="route-stat-key">Duration</span>
-        </div>
-      </div>
-      <p class="route-desc">
-        The full experience of the Baix Empordà in one day. From Ses Garites, cross the rice fields 
-        to the coast at L'Estartit, then head south through the Montgrí Natural Park — 
-        challenging but never punishing terrain — looping back through medieval Torroella 
-        and Peratallada before returning across the plains. A day you won't forget.
-      </p>
-      <ul class="route-highlights">
-        <li>Ses Garites → rice fields → L'Estartit → Montgrí Park → Torroella → Peratallada → return</li>
-        <li>Views of the Medes Islands marine reserve from the coast</li>
-        <li>Lunch in Torroella de Montgrí</li>
-        <li>Road bike or gravel bike recommended</li>
-      </ul>
+      <a href="Rustik-DosKiwis-Pals Gravel.gpx" download class="route-gpx">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download GPS Track
+      </a>
     </div>
 
   </div>
 </section>
 
-<!-- ── FEATURED DEEP DIVE ── -->
-<section class="featured-section">
-  <div class="featured-inner">
-    <div>
-      <p class="section-label" style="color:var(--gold)">Recommended ride</p>
-      <h2 class="section-title">The Rice Fields Loop — perfect first ride</h2>
-      <p class="section-intro">
-        If you ride one route from Ses Garites, make it this one. 
-        The landscape is unlike anything else in Spain — flat tracks through flooded paddies 
-        with the Medes Islands on the horizon. Easy, beautiful, and completely unforgettable.
-      </p>
-      <p style="font-size:0.85rem; color:rgba(255,255,255,0.4); margin-top:1.5rem; font-style:italic;">
-        "Josep Pla wrote of Pals: 'one of the most beautiful and unforgettable views in the country.' 
-        The rice fields make it even better from a bicycle."
+<!-- ── PRACTICAL INFO ── -->
+<section class="practical-section">
+  <p class="section-label">Before you ride</p>
+  <h2 class="section-title">Everything you need to know</h2>
+  <p class="section-intro">We're happy to help with routes, conditions, and recommendations — just ask at check-in.</p>
+
+  <div class="practical-grid">
+    <div class="prac-card">
+      <span class="prac-icon">🚲</span>
+      <h3 class="prac-title">Bike rental nearby</h3>
+      <p class="prac-body">
+        <strong>Aliveness Cycling</strong> — local specialist with road, gravel, MTB & e-bikes. 
+        GPS tracks included.<br><br>
+        <strong>Bravamar</strong> — closer to the beach, good for casual rides & e-bikes.<br><br>
+        We recommend booking ahead in July & August.
       </p>
     </div>
-    <div class="featured-visual">
-      <div class="feat-row">
-        <span class="feat-km">0 km</span>
-        <div class="feat-stop">
-          <span class="feat-stop-name">Ses Garites</span>
-          <span class="feat-stop-note">Start here. Take the track east toward the fields.</span>
-        </div>
-      </div>
-      <div class="feat-row">
-        <span class="feat-km">3 km</span>
-        <div class="feat-stop">
-          <span class="feat-stop-name">Rice fields of Pals</span>
-          <span class="feat-stop-note">The track enters the paddies. Stop for photos — extraordinary light at sunrise.</span>
-        </div>
-      </div>
-      <div class="feat-row">
-        <span class="feat-km">7 km</span>
-        <div class="feat-stop">
-          <span class="feat-stop-name">Pals Beach viewpoint</span>
-          <span class="feat-stop-note">Views of the Medes Islands. 2.5 km of dune-backed beach ahead.</span>
-        </div>
-      </div>
-      <div class="feat-row">
-        <span class="feat-km">10 km</span>
-        <div class="feat-stop">
-          <span class="feat-stop-name">Platja de Pals</span>
-          <span class="feat-stop-note">Turnaround point. Beach bar available in summer. Swim if you like.</span>
-        </div>
-      </div>
-      <div class="feat-row">
-        <span class="feat-km">20 km</span>
-        <div class="feat-stop">
-          <span class="feat-stop-name">Back to Ses Garites</span>
-          <span class="feat-stop-note">Return via the same tracks. The light changes completely heading west.</span>
-        </div>
-      </div>
+    <div class="prac-card">
+      <span class="prac-icon">📍</span>
+      <h3 class="prac-title">GPS tracks & maps</h3>
+      <p class="prac-body">
+        Download the GPX files directly from each route above. Compatible with Komoot, Wikiloc, Garmin, and all major GPS apps.<br><br>
+        Paper maps of the Baix Empordà cycling network are available at the Pals tourist office (5 min away).
+      </p>
+    </div>
+    <div class="prac-card">
+      <span class="prac-icon">🛠</span>
+      <h3 class="prac-title">What to bring</h3>
+      <p class="prac-body">
+        Water (at least 1.5–2L), sun cream, and a snack. 
+        In summer, start before 10am for best conditions. 
+        A basic repair kit and spare tube are essential on gravel routes.<br><br>
+        We have a bike pump and tools available at the property.
+      </p>
+    </div>
+    <div class="prac-card">
+      <span class="prac-icon">🍽</span>
+      <h3 class="prac-title">Mid-ride stops</h3>
+      <p class="prac-body">
+        <strong>Grava Pals</strong> — off-the-grid bike café in Pals, perfect for cyclists. 
+        Coffee, tapas, gravel vibes.<br><br>
+        <strong>Can Padres</strong> — legendary rotisserie chicken just outside Pals. 
+        A classic post-ride reward.<br><br>
+        Beach bars at Platja de Pals open June–September.
+      </p>
+    </div>
+    <div class="prac-card">
+      <span class="prac-icon">🌬</span>
+      <h3 class="prac-title">The Tramuntana wind</h3>
+      <p class="prac-body">
+        The Empordà is known for its strong northerly wind — the <em>Tramuntana</em>. 
+        It can make cycling difficult and is strongest in winter and spring. 
+        On windless days, the open rice fields feel magical. 
+        Check the forecast: <a href="https://www.windy.com" target="_blank">windy.com</a> is reliable.
+      </p>
+    </div>
+    <div class="prac-card">
+      <span class="prac-icon">🏨</span>
+      <h3 class="prac-title">At Ses Garites</h3>
+      <p class="prac-body">
+        We have secure bike storage, a garden hose to clean bikes after muddy rides, 
+        and a shaded area to repair or prep your bike.<br><br>
+        Ask us at check-in for current route conditions, seasonal recommendations, 
+        and which tracks to avoid after rain.
+      </p>
     </div>
   </div>
 </section>
@@ -838,89 +904,19 @@
   <div style="margin-top:2.5rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem;">
     <div>
       <p style="font-weight:600; color:var(--stone); font-size:0.9rem; margin-bottom:0.4rem;">Spring (Apr–Jun) ★</p>
-      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">The sweet spot. Warm days, the rice fields freshly flooded, wildflowers on the roadsides, and no summer crowds. Our favourite time to ride.</p>
+      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">The sweet spot. Warm days, the rice fields freshly flooded, wildflowers on the roadsides, and no summer crowds. Our favourite season for gravel riding.</p>
     </div>
     <div>
       <p style="font-weight:600; color:var(--stone); font-size:0.9rem; margin-bottom:0.4rem;">Summer (Jul–Aug)</p>
-      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Hot — start early morning before 10am and you'll be rewarded. The rice fields are at their most lush and intensely green. Busy on the coast.</p>
+      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Hot — start early morning before 10am and you'll be rewarded. The rice fields are at their most lush and intensely green. Plan shorter rides in the heat.</p>
     </div>
     <div>
       <p style="font-weight:600; color:var(--stone); font-size:0.9rem; margin-bottom:0.4rem;">Autumn (Sep–Oct) ★</p>
-      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Arguably the best. Harvest season turns the fields golden, the light is extraordinary, and the roads are quiet. Perfect temperatures.</p>
+      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Arguably the best. Harvest season turns the fields golden, the light is extraordinary, and the roads are quiet. Perfect temperatures for long gravel rides.</p>
     </div>
     <div>
       <p style="font-weight:600; color:var(--stone); font-size:0.9rem; margin-bottom:0.4rem;">Winter (Nov–Mar)</p>
-      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Mild and peaceful. The Tramuntana wind can be strong — check forecasts. On calm days, the light and solitude are unbeatable.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ── PRACTICAL INFO ── -->
-<section class="practical-section">
-  <p class="section-label">Before you ride</p>
-  <h2 class="section-title">Everything you need to know</h2>
-  <p class="section-intro">We're happy to help with routes, conditions, and recommendations — just ask at check-in.</p>
-
-  <div class="practical-grid">
-    <div class="prac-card">
-      <span class="prac-icon">🚲</span>
-      <h3 class="prac-title">Bike rental nearby</h3>
-      <p class="prac-body">
-        <strong>Aliveness Cycling</strong> — local specialist with road, gravel, MTB & e-bikes. 
-        GPS tracks included.<br><br>
-        <strong>Bravamar</strong> — closer to the beach, good for casual rides & e-bikes.<br><br>
-        We recommend booking ahead in July & August.
-      </p>
-    </div>
-    <div class="prac-card">
-      <span class="prac-icon">📍</span>
-      <h3 class="prac-title">GPS tracks & maps</h3>
-      <p class="prac-body">
-        All four routes are available on <strong>Komoot</strong> and <strong>Wikiloc</strong> — 
-        search "Pals rice fields" or "Begur cycling" for the most popular tracks.<br><br>
-        Paper maps of the Baix Empordà cycling network are available at the Pals tourist office (5 min away).
-      </p>
-    </div>
-    <div class="prac-card">
-      <span class="prac-icon">🛠</span>
-      <h3 class="prac-title">What to bring</h3>
-      <p class="prac-body">
-        Water (at least 1.5L — no fountains on most tracks), sun cream, and a snack. 
-        In summer, start before 10am and plan to be back by 1pm. 
-        A basic repair kit and spare tube are wise on gravel routes.<br><br>
-        We have a bike pump and basic tools available at the property.
-      </p>
-    </div>
-    <div class="prac-card">
-      <span class="prac-icon">🍽</span>
-      <h3 class="prac-title">Mid-ride stops</h3>
-      <p class="prac-body">
-        <strong>Grava Pals</strong> — off-the-grid bike café in Pals, perfect for cyclists. 
-        Coffee, tapas, gravel vibes.<br><br>
-        <strong>Can Padres</strong> — legendary rotisserie chicken just outside Pals. 
-        A classic post-ride reward.<br><br>
-        Beach bars at <strong>Platja de Pals</strong> open June–September.
-      </p>
-    </div>
-    <div class="prac-card">
-      <span class="prac-icon">🌬</span>
-      <h3 class="prac-title">The Tramuntana wind</h3>
-      <p class="prac-body">
-        The Empordà is known for its strong northerly wind — the <em>Tramuntana</em>. 
-        It can make cycling difficult and is strongest in winter and spring. 
-        On windless days, the open rice fields feel magical. 
-        Check the forecast before longer rides: <a href="https://www.windy.com" target="_blank">windy.com</a> is reliable.
-      </p>
-    </div>
-    <div class="prac-card">
-      <span class="prac-icon">🏨</span>
-      <h3 class="prac-title">At Ses Garites</h3>
-      <p class="prac-body">
-        We have secure bike storage, a garden hose to clean bikes after muddy rides, 
-        and a shaded area to repair or prep your bike.<br><br>
-        Ask us at check-in for current route conditions, seasonal recommendations, 
-        and which tracks to avoid after rain.
-      </p>
+      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Mild and peaceful. The Tramuntana wind can be strong — check forecasts. On calm days, the light and solitude are unbeatable for introspective gravel cycling.</p>
     </div>
   </div>
 </section>
@@ -931,7 +927,7 @@
   <h2 class="section-title">Book your stay at Ses Garites</h2>
   <p class="section-intro">
     Wake up to rice fields, clip in, and discover the Empordà at your own pace. 
-    The best rides in Catalonia start right outside our gate.
+    The best gravel routes in Catalonia start right outside our gate.
   </p>
   <a href="#" class="cta-btn">Check availability</a>
 </section>
