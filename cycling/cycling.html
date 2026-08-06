@@ -154,26 +154,6 @@
     line-height: 1.7;
   }
 
-  .scroll-hint {
-    position: absolute;
-    bottom: 2.5rem;
-    right: 6vw;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-    color: rgba(255,255,255,0.4);
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-
-  .scroll-hint svg { animation: bounce 2s infinite; }
-  @keyframes bounce {
-    0%,100% { transform: translateY(0); }
-    50%      { transform: translateY(6px); }
-  }
 
   /* ── INTRO STRIP ── */
   .intro-strip {
@@ -646,62 +626,6 @@
 
   .prac-body a:hover { text-decoration: underline; }
 
-  /* ── SEASON BAR ── */
-  .season-section { background: var(--cream); }
-
-  .season-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 4px;
-    margin-bottom: 1rem;
-  }
-
-  .month {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .month-name {
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .month-bar {
-    width: 100%;
-    height: 28px;
-    border-radius: 2px;
-  }
-
-  .great   { background: var(--sage); }
-  .good    { background: var(--gold); opacity: 0.7; }
-  .ok      { background: var(--rice); border: 1px solid var(--muted); opacity: 0.5; }
-  .avoid   { background: #ccc; opacity: 0.35; }
-
-  .season-legend {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    margin-top: 0.8rem;
-  }
-
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-
-  .legend-dot {
-    width: 12px; height: 12px;
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
 
   /* ── CTA ── */
   .cta-section {
@@ -751,7 +675,7 @@
     .intro-strip { flex-direction: column; gap: 1.5rem; }
     .stat-divider { width: 48px; height: 1px; }
     section { padding: 3.5rem 5vw; }
-    .season-grid { grid-template-columns: repeat(6, 1fr); }
+
     .month-name { font-size: 0.5rem; }
     .featured-visual { margin-top: 1rem; }
     .route-stats { gap: 1rem; }
@@ -802,12 +726,7 @@
     <h1>Pedal through <em>rice fields,<br>medieval villages</em><br>& hidden coves.</h1>
     <p class="hero-sub">Some of Catalonia's finest cycling begins right outside our gate — from flat family rides through golden rice paddies to challenging climbs above the Costa Brava.</p>
   </div>
-  <div class="scroll-hint">
-    <span>Discover routes</span>
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M8 3v10M3 9l5 5 5-5" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
-  </div>
+ 
 </section>
 
 <!-- ── INTRO STRIP ── -->
@@ -1035,52 +954,7 @@
   </div>
 </section>
 
-<!-- ── BEST SEASON ── -->
-<section class="season-section">
-  <p class="section-label">When to ride</p>
-  <h2 class="section-title">Almost year-round — but timing matters</h2>
-  <p class="section-intro">The Empordà offers cycling in every month, but each season has a character of its own.</p>
 
-  <div class="season-grid">
-    <div class="month"><span class="month-name">Jan</span><div class="month-bar ok"></div></div>
-    <div class="month"><span class="month-name">Feb</span><div class="month-bar ok"></div></div>
-    <div class="month"><span class="month-name">Mar</span><div class="month-bar good"></div></div>
-    <div class="month"><span class="month-name">Apr</span><div class="month-bar great"></div></div>
-    <div class="month"><span class="month-name">May</span><div class="month-bar great"></div></div>
-    <div class="month"><span class="month-name">Jun</span><div class="month-bar great"></div></div>
-    <div class="month"><span class="month-name">Jul</span><div class="month-bar good"></div></div>
-    <div class="month"><span class="month-name">Aug</span><div class="month-bar good"></div></div>
-    <div class="month"><span class="month-name">Sep</span><div class="month-bar great"></div></div>
-    <div class="month"><span class="month-name">Oct</span><div class="month-bar great"></div></div>
-    <div class="month"><span class="month-name">Nov</span><div class="month-bar good"></div></div>
-    <div class="month"><span class="month-name">Dec</span><div class="month-bar ok"></div></div>
-  </div>
-
-  <div class="season-legend">
-    <div class="legend-item"><div class="legend-dot" style="background:var(--sage)"></div> Ideal</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--gold); opacity:0.7"></div> Good</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--rice); border:1px solid var(--muted)"></div> Manageable</div>
-  </div>
-
-  <div style="margin-top:2.5rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem;">
-    <div>
-      <p style="font-weight:600; color:var(--stone); font-size:0.9rem; margin-bottom:0.4rem;">Spring (Apr–Jun) ★</p>
-      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">The sweet spot. Warm days, the rice fields freshly flooded, wildflowers on the roadsides, and no summer crowds. Our favourite season for gravel riding.</p>
-    </div>
-    <div>
-      <p style="font-weight:600; color:var(--stone); font-size:0.9rem; margin-bottom:0.4rem;">Summer (Jul–Aug)</p>
-      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Hot — start early morning before 10am and you'll be rewarded. The rice fields are at their most lush and intensely green. Plan shorter rides in the heat.</p>
-    </div>
-    <div>
-      <p style="font-weight:600; color:var(--stone); font-size:0.9rem; margin-bottom:0.4rem;">Autumn (Sep–Oct) ★</p>
-      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Arguably the best. Harvest season turns the fields golden, the light is extraordinary, and the roads are quiet. Perfect temperatures for long gravel rides.</p>
-    </div>
-    <div>
-      <p style="font-weight:600; color:var(--stone); font-size:0.9rem; margin-bottom:0.4rem;">Winter (Nov–Mar)</p>
-      <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Mild and peaceful. The Tramuntana wind can be strong — check forecasts. On calm days, the light and solitude are unbeatable for introspective gravel cycling.</p>
-    </div>
-  </div>
-</section>
 
 <!-- ── CTA ── -->
 <section class="cta-section">
