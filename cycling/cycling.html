@@ -37,13 +37,43 @@
     margin-top: 2rem;
 }
 
- .cycling-guide-box {
+
+<div class="cycling-guide-box">
+
+  <ul class="cycling-guide-list">
+    <li>Private and small-group rides</li>
+    <li>Road & gravel specialists</li>
+    <li>Professional local guides</li>
+    <li>Custom routes from Ses Garites</li>
+  </ul>
+
+  <div class="cycling-guide-footer">
+
+    <a
+      href="https://gironacyclingguides.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cycling-guide-btn">
+        Visit Girona Cycling Guides
+    </a>
+
+    <img 
+      src="girona-cycling-guides-logo.png"
+      alt="Girona Cycling Guides"
+      class="cycling-guide-logo">
+
+  </div>
+
+</div>
+
+.cycling-guide-box {
     margin-top: 2rem;
     padding: 1.8rem;
-    border: 2px solid #C90000;
+    border: 1px solid var(--gold);
     border-radius: 8px;
-    background: rgba(201,0,0,0.03);
+    background: transparent;
 }
+
 
 .cycling-guide-list {
     list-style: none;
@@ -54,40 +84,68 @@
     margin: 0 0 2rem 0;
 }
 
+
 .cycling-guide-list li {
     font-size: 0.9rem;
     color: var(--text);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: .5rem;
 }
+
 
 .cycling-guide-list li::before {
     content: "→";
-    color: #C90000;
+    color: var(--gold);
     font-weight: 600;
 }
+
+
+.cycling-guide-footer {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
 
 .cycling-guide-btn {
     display: inline-block;
-    padding: 0.85rem 1.8rem;
-    background: #C90000;
-    color: white;
+    padding: .85rem 1.8rem;
+    background: var(--gold);
+    color: var(--dark);
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: .8rem;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: .12em;
     text-transform: uppercase;
-    transition: background 0.2s ease;
+    transition: background .2s ease;
 }
+
 
 .cycling-guide-btn:hover {
-    background: #990000;
+    background: var(--gold-lt);
 }
-@media (max-width:640px) {
+
+
+.cycling-guide-logo {
+    width: 150px;
+    height: auto;
+}
+
+@media (max-width:640px){
 
     .cycling-guide-list {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
+    }
+
+    .cycling-guide-footer {
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .cycling-guide-logo {
+        width:130px;
     }
 
 }
@@ -1160,13 +1218,22 @@ perfect route for your group.
     <li>Custom routes from Ses Garites</li>
   </ul>
 
-  <a
-    href="https://gironacyclingguides.com"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="cycling-guide-btn">
-      Visit Girona Cycling Guides
-  </a>
+  <div class="cycling-guide-footer">
+
+    <a
+      href="https://gironacyclingguides.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cycling-guide-btn">
+        Visit Girona Cycling Guides
+    </a>
+
+    <img 
+      src="girona-cycling-guides-logo.png"
+      alt="Girona Cycling Guides"
+      class="cycling-guide-logo">
+
+  </div>
 
 </div>
 
