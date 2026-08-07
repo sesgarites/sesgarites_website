@@ -34,22 +34,22 @@
   }
 
   /* ── HERO ── */
-  .hero {
-    position: relative;
-    height: 92vh;
-    min-height: 500px;
-    background: linear-gradient(
-      160deg,
-      #1A2A1A 0%,
-      #2A3D2A 30%,
-      #3D5030 60%,
-      #1A2818 100%
-    );
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    overflow: hidden;
-  }
+.hero{
+    position:relative;
+    min-height:92vh;
+
+    background:linear-gradient(...);
+
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    align-items:center;
+
+    gap:5rem;
+
+    padding:6rem 6vw;
+
+    overflow:hidden;
+}
 
   /* Animated rice field stripes */
   .hero::before {
@@ -88,28 +88,11 @@
    HERO IMAGES
 ------------------------------*/
 
-.hero {
 
-    position: relative;
-
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    align-items: center;
-
-    gap: 5rem;
-
-    max-width: 1400px;
-    margin: 0 auto;
-
-    min-height: 90vh;
-
-    padding: 6rem 2rem;
-}
 
 .hero-content{
-
+    position:relative;
     z-index:2;
-
     max-width:620px;
 }
 
@@ -134,33 +117,6 @@
 
  
 /*----------------------------------------*/ 
- 
-  /* Image overlay */
-  .hero-image-overlay {
-    position: absolute;
-    bottom: 20px;
-    right: 40px;
-    width: 480px;
-    height: 310px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    opacity: 0.85;
-    z-index: 1;
-  }
-
-  .hero-image-overlay img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 0 6vw 7vh;
-    max-width: 900px;
-  }
 
   .hero-eyebrow {
     font-family: 'Inter', sans-serif;
@@ -717,12 +673,7 @@
     .modal-next {
       right: -40px;
     }
-    .hero-image-overlay {
-      width: 280px;
-      height: 180px;
-      bottom: 8px;
-      right: 15px;
-    }
+    
   }
 </style>
 </head>
