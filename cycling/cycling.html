@@ -84,6 +84,131 @@
     background-size: 28px 28px;
   }
 
+/* -----------------------------
+   HERO IMAGES
+------------------------------*/
+
+.hero{
+    position:relative;
+    overflow:hidden;
+}
+
+
+/* Shared styles */
+
+.hero-image-overlay{
+    position:absolute;
+    overflow:hidden;
+    border-radius:28px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.22);
+
+    transition:.45s ease;
+}
+
+.hero-image-overlay img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+
+/* MAIN IMAGE */
+
+.image-main{
+
+    width:440px;
+    height:610px;
+
+    right:8%;
+    top:80px;
+
+    z-index:2;
+
+    transform:rotate(-2deg);
+}
+
+.image-main:hover{
+
+    transform:
+        rotate(0deg)
+        translateY(-6px);
+
+}
+
+
+/* SMALL IMAGE */
+
+.image-secondary{
+
+    width:245px;
+    height:315px;
+
+    right:330px;
+    bottom:80px;
+
+    z-index:3;
+
+    background:#fff;
+
+    padding:10px;
+
+    border-radius:22px;
+
+    transform:rotate(6deg);
+}
+
+.image-secondary img{
+
+    border-radius:14px;
+
+}
+
+.image-secondary:hover{
+
+    transform:
+        rotate(3deg)
+        translateY(-6px);
+
+}
+
+
+/* Keeps text above decorative background but below images */
+
+.hero-content{
+
+    position:relative;
+    z-index:4;
+
+    max-width:650px;
+
+}
+
+
+/* Optional */
+
+.hero-image-overlay::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.10),
+        rgba(0,0,0,0)
+    );
+
+    pointer-events:none;
+
+}
+
+ 
+ 
   /* Image overlay */
   .hero-image-overlay {
     position: absolute;
@@ -602,6 +727,33 @@
     }
   }
 
+ @media (max-width:900px){
+
+.image-main{
+
+    width:310px;
+    height:430px;
+
+    position:relative;
+
+    top:auto;
+    right:auto;
+
+    margin:60px auto 0;
+
+}
+
+.image-secondary{
+
+    width:180px;
+    height:230px;
+
+    right:25px;
+    bottom:40px;
+
+}
+
+}
   @media (max-width: 640px) {
     .intro-strip { flex-direction: column; gap: 1.5rem; }
     .stat-divider { width: 48px; height: 1px; }
@@ -644,23 +796,51 @@
   </div>
 </div>
 
-<!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-dots"></div>
-  <div class="hero-image-overlay">
-    <img src="PalsGravel.jpg" alt="Pals Gravel cycling route">
-  </div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Ses Garites · Pals, Costa Brava</p>
-    <h1>Pedal through <em>rice fields,<br>medieval villages</em><br>& hidden coves.</h1>
-    <p class="hero-sub">Some of Catalonia's finest cycling begins right outside our gate — from flat family rides through golden rice paddies to challenging climbs above the Costa Brava.</p>
-  </div>
-  <div class="scroll-hint">
-    <span>Discover routes</span>
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M8 3v10M3 9l5 5 5-5" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
-  </div>
+
+    <div class="hero-dots"></div>
+
+    <!-- Main hero image -->
+    <div class="hero-image-overlay image-main">
+        <img src="SesGaritesArrival.jpg" alt="Cyclist arriving at Ses Garites">
+    </div>
+
+    <!-- Secondary image -->
+    <div class="hero-image-overlay image-secondary">
+        <img src="PalsGravel.jpg" alt="Cycling through the Costa Brava">
+    </div>
+
+    <div class="hero-content">
+
+        <p class="hero-eyebrow">
+            Ses Garites · Pals, Costa Brava
+        </p>
+
+        <h1>
+            Pedal through
+            <em>rice fields,<br>medieval villages</em><br>
+            & hidden coves.
+        </h1>
+
+        <p class="hero-sub">
+            Some of Catalonia's finest cycling begins right outside our gate —
+            from flat family rides through golden rice paddies to challenging
+            climbs above the Costa Brava.
+        </p>
+
+    </div>
+
+    <div class="scroll-hint">
+        <span>Discover routes</span>
+
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 3v10M3 9l5 5 5-5"
+                  stroke="rgba(255,255,255,.45)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"/>
+        </svg>
+    </div>
+
 </section>
 
 <!-- ── INTRO STRIP ── -->
