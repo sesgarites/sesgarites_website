@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ses Garites — Una Masía Catalana del Siglo XVI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --stone-dark:#332821;
+    --stone-mid:#6B5A4E;
+    --limestone:#DCD3BE;
+    --parchment:#F7EFE7;
+    --gold:#A9832F;
+    --gold-soft:#C9A64F;
+    --olive:#6E7350;
+    --blush:#D9A9A0;
+    --rose:#B97D6E;
+    --rose-deep:#8C5548;
+    --ink:#332821;
+    --hair:rgba(51,40,33,0.15);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Libre Franklin', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+  .eyebrow{
+    font-family:'Libre Franklin', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.22em;
+    font-size:0.72rem;
+    font-weight:600;
+    color:var(--gold);
+  }
+  .script{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    color:var(--rose);
+  }
+  .sprig{
+    display:block;
+    margin:22px auto;
+    opacity:0.75;
+  }
+  .sprig path, .sprig circle{
+    stroke:var(--gold-soft);
+    stroke-width:1.1;
+    fill:none;
+  }
+  .sprig.on-dark path, .sprig.on-dark circle{stroke:var(--gold-soft);}
+  .sprig.on-light path, .sprig.on-light circle{stroke:var(--rose);}
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- ARCH SIGNATURE ---------- */
+  .arch-divider{
+    width:100%;
+    height:64px;
+    background:var(--parchment);
+    border-top-left-radius:64px;
+    border-top-right-radius:64px;
+    position:relative;
+    top:1px;
+  }
+  .arch-divider.dark{background:var(--stone-dark);}
+  .arch-divider.stone{background:var(--limestone);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 40%, rgba(217,169,160,0.18) 0%, rgba(217,169,160,0) 70%),
+      linear-gradient(180deg, rgba(51,40,33,0.25) 0%, rgba(51,40,33,0.72) 100%),
+      url('hero.jpg');
+    background-size:cover;
+    background-position:center 30%;
+    color:var(--parchment);
+    min-height:92vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    padding:80px 24px 100px;
+  }
+  .hero .roman{
+    font-size:0.9rem;
+    letter-spacing:0.5em;
+    color:var(--gold-soft);
+    margin-bottom:14px;
+    font-weight:400;
+  }
+  .hero .eyebrow{color:var(--gold-soft); margin-bottom:22px;}
+  .hero h1{
+    font-style:italic;
+    font-size:clamp(2.6rem, 7vw, 5.2rem);
+    line-height:1.02;
+    max-width:14ch;
+  }
+  .hero p.sub{
+    margin-top:26px;
+    max-width:44ch;
+    font-size:1.05rem;
+    font-weight:300;
+    color:var(--limestone);
+  }
+  .hero .loc{
+    margin-top:40px;
+    font-size:0.8rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    display:flex;
+    gap:14px;
+    align-items:center;
+  }
+  .hero .loc::before,.hero .loc::after{content:""; width:36px; height:1px; background:var(--gold-soft); opacity:0.6;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:96px 0;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head h2{font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:12px;}
+  .section-head p{margin-top:16px; color:var(--stone-mid); font-size:1.02rem; max-width:56ch;}
+
+  /* ---------- ESTATE INTRO ---------- */
+  .estate{background:var(--parchment);}
+  .estate .grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px; align-items:start;}
+  .estate p{color:var(--stone-mid); font-size:1.06rem; margin-bottom:18px;}
+  .estate .exclusive{
+    border-left:2px solid var(--rose);
+    padding-left:20px;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:var(--rose-deep);
+  }
+  .stat-block{
+    background:var(--stone-dark);
+    color:var(--parchment);
+    padding:36px 32px;
+    border-top-left-radius:100px;
+    border-top-right-radius:100px;
+    text-align:center;
+  }
+  .stat-block .num{font-family:'Fraunces',serif; font-style:italic; font-size:2.8rem; color:var(--blush);}
+  .stat-block .label{font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--limestone); margin-top:6px;}
+  .stat-block-row{display:flex; flex-direction:column; gap:18px;}
+
+  /* ---------- INCLUDED GRID ---------- */
+  .included{background:var(--stone-dark); color:var(--parchment);}
+  .included .section-head p{color:var(--limestone);}
+  .included .section-head .eyebrow{color:var(--gold-soft);}
+  .inc-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:rgba(247,239,231,0.14);
+    border:1px solid rgba(247,239,231,0.14);
+  }
+  .inc-card{
+    background:var(--stone-dark);
+    padding:34px 28px;
+  }
+  .inc-card h3{font-size:1.15rem; font-weight:500; font-style:italic; margin-bottom:10px; color:var(--gold-soft);}
+  .inc-card p{font-size:0.92rem; color:var(--limestone); font-weight:300;}
+
+  /* ---------- PACKAGES ---------- */
+  .packages{background:var(--parchment);}
+  .pkg-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:28px; max-width:800px; margin:0 auto;}
+  .pkg-card{
+    border:1px solid var(--hair);
+    border-radius:6px 6px 40px 6px;
+    padding:40px 34px;
+    display:flex;
+    flex-direction:column;
+    background:#fff;
+    position:relative;
+  }
+  .pkg-card.featured{
+    border-color:var(--rose);
+    box-shadow:0 22px 44px -24px rgba(185,125,110,0.45);
+  }
+  .pkg-card .season{font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--rose-deep); font-weight:600;}
+  .pkg-card h3{font-size:1.5rem; font-style:italic; margin:10px 0 4px;}
+  .pkg-card .price{font-family:'Fraunces',serif; font-size:1.9rem; color:var(--rose-deep); margin-bottom:16px;}
+  .pkg-card .desc{font-size:0.92rem; color:var(--stone-mid); margin-bottom:22px;}
+  .pkg-card ul{list-style:none; margin-top:auto; display:flex; flex-direction:column; gap:10px;}
+  .pkg-card li{font-size:0.88rem; padding-left:18px; position:relative; color:var(--ink);}
+  .pkg-card li::before{content:"—"; position:absolute; left:0; color:var(--rose);}
+
+  /* ---------- EXPERIENCE TIMELINE ---------- */
+  .experience{background:var(--limestone);}
+  .experience .section-head p{color:var(--stone-mid);}
+  .timeline{display:flex; flex-direction:column; gap:0;}
+  .day-row{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:40px;
+    padding:36px 0;
+    border-top:1px solid rgba(51,40,33,0.18);
+  }
+  .day-row:last-child{border-bottom:1px solid rgba(51,40,33,0.18);}
+  .day-row .day{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:1.6rem;
+  }
+  .day-row .day .date-tag{
+    display:block;
+    font-family:'Libre Franklin',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--rose-deep);
+    margin-top:6px;
+    font-weight:600;
+  }
+  .day-row h4{font-size:1.15rem; margin-bottom:8px;}
+  .day-row p{color:var(--stone-mid); font-size:0.98rem; max-width:60ch;}
+
+  /* ---------- QUOTE ---------- */
+  .quote-section{
+    background:
+      radial-gradient(ellipse 50% 60% at 50% 30%, rgba(217,169,160,0.16) 0%, rgba(217,169,160,0) 70%),
+      var(--stone-dark);
+    color:var(--parchment);
+    text-align:center;
+    padding:110px 24px;
+  }
+  .quote-section blockquote{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:clamp(1.4rem,3vw,2.1rem);
+    max-width:26ch;
+    margin:0 auto;
+    line-height:1.4;
+  }
+  .quote-section cite{
+    display:block;
+    margin-top:26px;
+    font-style:normal;
+    font-family:'Libre Franklin',sans-serif;
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--blush);
+  }
+
+  /* ---------- BEYOND ---------- */
+  .beyond{background:var(--parchment);}
+  .beyond-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
+  .beyond-card{padding:26px 0; border-top:2px solid var(--rose);}
+  .beyond-card .dist{font-family:'Fraunces',serif; font-style:italic; font-size:1.3rem;}
+  .beyond-card .place{font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--stone-mid); margin-top:8px;}
+  .beyond-card .desc{font-size:0.88rem; color:var(--stone-mid); margin-top:4px;}
+
+  /* ---------- PRACTICAL ---------- */
+  .practical{background:var(--olive); color:var(--parchment);}
+  .practical .section-head .eyebrow{color:var(--limestone);}
+  .practical .section-head p{color:rgba(247,239,231,0.85);}
+  .prac-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:36px;}
+  .prac-col h3{font-family:'Libre Franklin',sans-serif; text-transform:uppercase; letter-spacing:0.08em; font-size:0.8rem; font-weight:600; margin-bottom:16px; color:var(--blush);}
+  .prac-col dl{display:flex; flex-direction:column; gap:12px;}
+  .prac-col dt{font-size:0.86rem; font-weight:600;}
+  .prac-col dd{font-size:0.86rem; color:rgba(247,239,231,0.85); margin-top:2px;}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    background:
+      radial-gradient(ellipse 55% 60% at 50% 20%, rgba(217,169,160,0.18) 0%, rgba(217,169,160,0) 70%),
+      var(--stone-dark);
+    color:var(--parchment);
+    text-align:center;
+    padding:120px 24px 90px;
+  }
+  .cta .roman{font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.2rem; color:var(--blush); margin-bottom:18px;}
+  .cta h2{font-style:italic; font-size:clamp(2rem,4vw,3rem); max-width:16ch; margin:0 auto 20px;}
+  .cta p{color:var(--limestone); font-weight:300; margin-bottom:34px;}
+  .cta .btn{
+    display:inline-block;
+    border:1px solid var(--rose);
+    color:var(--blush);
+    border-radius:2px 2px 24px 2px;
+    padding:16px 40px;
+    font-size:0.82rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    text-decoration:none;
+    transition:all 0.3s ease;
+  }
+  .cta .btn:hover{background:var(--rose); border-color:var(--rose); color:var(--stone-dark);}
+  footer{
+    background:var(--stone-dark);
+    color:var(--stone-mid);
+    text-align:center;
+    padding:26px 24px 40px;
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .estate .grid{grid-template-columns:1fr; gap:40px;}
+    .inc-grid{grid-template-columns:repeat(2,1fr);}
+    .pkg-grid{grid-template-columns:1fr;}
+    .beyond-grid{grid-template-columns:repeat(2,1fr);}
+    .prac-grid{grid-template-columns:repeat(2,1fr); row-gap:40px;}
+    .day-row{grid-template-columns:1fr; gap:12px;}
+  }
+  @media (max-width:560px){
+    .inc-grid{grid-template-columns:1fr;}
+    .beyond-grid{grid-template-columns:1fr;}
+    .prac-grid{grid-template-columns:1fr;}
+    section{padding:64px 0;}
+    .wrap{padding:0 22px;}
+  }
+
+  :focus-visible{outline:2px solid var(--rose); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="roman">X V I</div>
+  <div class="eyebrow">Pals · Costa Brava · Catalonia</div>
+  <h1>Ses Garites</h1>
+  <svg class="sprig on-dark" width="140" height="28" viewBox="0 0 140 28" aria-hidden="true">
+    <path d="M4 14 H58" /><path d="M82 14 H136" />
+    <circle cx="70" cy="14" r="4.5" />
+    <path d="M46 14 c4 -7 12 -8 16 -2" /><path d="M46 14 c4 7 12 8 16 2" />
+    <path d="M94 14 c-4 -7 -12 -8 -16 -2" /><path d="M94 14 c-4 7 -12 8 -16 2" />
+  </svg>
+  <p class="sub">Una masía catalana del siglo XVI dentro de las murallas medievales de Pals — bóvedas de piedra, suelos de terracota y quinientos años de silencio, reservados para una sola boda a la vez.</p>
+  <div class="loc">sesgarites.com</div>
+</div>
+<div class="arch-divider"></div>
+
+<section class="estate reveal">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <div class="eyebrow">La Finca</div>
+        <h2>Nunca compartida. Nunca dividida.</h2>
+        <p>Ses Garites es una de las fincas históricas más extraordinarias de la Costa Brava — una masía catalana del siglo XVI situada dentro de las murallas medievales de Pals, a un paso del Mediterráneo.</p>
+        <p>Techos abovedados de piedra originales, vigas de madera vistas y suelos de terracota que han resistido más de quinientos años ofrecen un escenario incomparable para bodas íntimas e inolvidables.</p>
+        <p class="exclusive">Toda la finca se alquila únicamente en su totalidad. Vuestra celebración, vuestro hogar, vuestra historia.</p>
+      </div>
+      <div class="stat-block-row">
+        <div class="stat-block">
+          <div class="num">20</div>
+          <div class="label">Huéspedes, capacidad total</div>
+        </div>
+        <div class="stat-block">
+          <div class="num">6</div>
+          <div class="label">Habitaciones con baño propio</div>
+        </div>
+        <div class="stat-block">
+          <div class="num">500+</div>
+          <div class="label">Años de piedra e historia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="included reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Qué Incluye</div>
+      <h2>Cada habitación, cada rincón, todo vuestro</h2>
+    </div>
+    <div class="inc-grid">
+      <div class="inc-card">
+        <h3>Alojamiento</h3>
+        <p>5 habitaciones dobles más 1 suite, cada una con baño privado. Capacidad para 20 personas.</p>
+      </div>
+      <div class="inc-card">
+        <h3>Espacio de Ceremonia</h3>
+        <p>Salón abovedado de piedra y terraza ajardinada, listos para vuestros votos, dentro o al aire libre.</p>
+      </div>
+      <div class="inc-card">
+        <h3>Comedor Abovedado</h3>
+        <p>Una bóveda de piedra medieval con capacidad para 20 o más, iluminada a la luz de las velas para la cena.</p>
+      </div>
+      <div class="inc-card">
+        <h3>Salón Biblioteca</h3>
+        <p>Un espacio íntimo con bóveda de piedra, ideal para el cóctel o un momento de calma.</p>
+      </div>
+      <div class="inc-card">
+        <h3>Piscina y Jardines Privados</h3>
+        <p>Piscina exterior, terraza solárium, vistas al prado abierto, jardines privados, amplio aparcamiento.</p>
+      </div>
+      <div class="inc-card">
+        <h3>Comodidades Modernas</h3>
+        <p>WiFi de alta velocidad, ventiladores de techo, calefacción y aparcamiento privado para cada invitado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="packages reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Paquetes de Boda</div>
+      <h2>Dos formas de vivir la finca</h2>
+      <p>Ambos paquetes incluyen el uso exclusivo de toda la finca — nada compartido, nada parcial.</p>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg-card featured">
+        <div class="season">Temporada Baja y Media · Vie–Dom</div>
+        <h3>Boda de Fin de Semana</h3>
+        <div class="price">Desde 4.850€</div>
+        <div class="desc">La experiencia clásica de Ses Garites. Llegada el viernes, celebración el sábado, y un domingo tranquilo con los vuestros.</div>
+        <ul>
+          <li>Uso exclusivo de toda la finca</li>
+          <li>Hasta 20 huéspedes con alojamiento</li>
+          <li>Apoyo de coordinación de evento disponible</li>
+          <li>Las 6 habitaciones con baño</li>
+          <li>Espacios de ceremonia y comedor</li>
+        </ul>
+      </div>
+      <div class="pkg-card">
+        <div class="season">Julio y Agosto · Vie–Dom</div>
+        <h3>Boda de Fin de Semana</h3>
+        <div class="price">Desde 6.500€</div>
+        <div class="desc">La magia del verano en la Costa Brava — atardeceres dorados, noches cálidas, y una finca medieval solo para vosotros.</div>
+        <ul>
+          <li>Uso exclusivo de toda la finca</li>
+          <li>Hasta 20 huéspedes con alojamiento</li>
+          <li>Apoyo de coordinación de evento disponible</li>
+          <li>Las 6 habitaciones con baño</li>
+          <li>Espacios de ceremonia y comedor</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="experience reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">La Experiencia</div>
+      <h2>No es solo un alquiler — es una inmersión</h2>
+      <p>Desde el momento en que vuestros invitados cruzan las puertas medievales de Pals, la experiencia comienza.</p>
+    </div>
+    <div class="timeline">
+      <div class="day-row">
+        <div class="day">Viernes<span class="date-tag">Llegada y Bienvenida</span></div>
+        <div>
+          <h4>La finca se convierte en vuestro hogar</h4>
+          <p>Los invitados llegan y se instalan en sus habitaciones. Una cesta de bienvenida con vinos locales y productos catalanes os espera. La primera noche es vuestra — aperitivo en la terraza, contemplando las estrellas desde el jardín.</p>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day">Sábado<span class="date-tag">La Celebración</span></div>
+        <div>
+          <h4>El día que nunca olvidaréis</h4>
+          <p>Intercambiad votos bajo las bóvedas de piedra o en el jardín. Cóctel en el salón biblioteca. Una larga cena a la luz de las velas en el comedor medieval. Música al aire libre hasta las 23h.</p>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day">Domingo<span class="date-tag">La Mañana Después</span></div>
+        <div>
+          <h4>Sin prisa por marchar</h4>
+          <p>Luz del sol entrando por las ventanas de piedra. Un desayuno tranquilo con todos alrededor de la mesa. La finca es vuestra todo el día — disfrutad de cada último momento antes de que el mundo vuelva a empezar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote-section reveal">
+  <svg class="sprig on-dark" width="140" height="28" viewBox="0 0 140 28" aria-hidden="true">
+    <path d="M4 14 H58" /><path d="M82 14 H136" />
+    <circle cx="70" cy="14" r="4.5" />
+    <path d="M46 14 c4 -7 12 -8 16 -2" /><path d="M46 14 c4 7 12 8 16 2" />
+    <path d="M94 14 c-4 -7 -12 -8 -16 -2" /><path d="M94 14 c-4 7 -12 8 -16 2" />
+  </svg>
+  <blockquote>La finca es tan hermosa que apenas necesita decoración. Nuestros invitados todavía hablan de ella años después.</blockquote>
+  <cite>Una pareja de Ses Garites</cite>
+</section>
+
+<section class="beyond reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Más Allá de la Finca</div>
+      <h2>La Costa Brava, a la puerta</h2>
+    </div>
+    <div class="beyond-grid">
+      <div class="beyond-card">
+        <div class="dist">5 min</div>
+        <div class="place">Platja de Pals</div>
+        <div class="desc">Playa de arena fina</div>
+      </div>
+      <div class="beyond-card">
+        <div class="dist">A pie</div>
+        <div class="place">Pals Medieval</div>
+        <div class="desc">Restaurantes y casco antiguo</div>
+      </div>
+      <div class="beyond-card">
+        <div class="dist">35 min</div>
+        <div class="place">Girona</div>
+        <div class="desc">Alta cocina con estrella Michelin</div>
+      </div>
+      <div class="beyond-card">
+        <div class="dist">90 min</div>
+        <div class="place">Barcelona</div>
+        <div class="desc">Aeropuerto internacional</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="practical reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Información Práctica</div>
+      <h2>Lo que debéis saber antes de consultar</h2>
+    </div>
+    <div class="prac-grid">
+      <div class="prac-col">
+        <h3>Reserva y Pago</h3>
+        <dl>
+          <div><dt>Consulta</dt><dd>Por web o email para comprobar disponibilidad</dd></div>
+          <div><dt>Depósito</dt><dd>50% para confirmar las fechas</dd></div>
+          <div><dt>Saldo</dt><dd>Se abona 30 días antes de la llegada</dd></div>
+          <div><dt>Tasa de limpieza</dt><dd>Desde 500€</dd></div>
+        </dl>
+      </div>
+      <div class="prac-col">
+        <h3>Capacidad</h3>
+        <dl>
+          <div><dt>Huéspedes con alojamiento</dt><dd>Hasta 20, en todas las habitaciones</dd></div>
+          <div><dt>Invitados de día</dt><dd>Hasta 350 posibles — consultar detalles</dd></div>
+          <div><dt>Exclusividad</dt><dd>Alquiler de toda la finca, nunca compartida</dd></div>
+        </dl>
+      </div>
+      <div class="prac-col">
+        <h3>Cómo Llegar</h3>
+        <dl>
+          <div><dt>Aeropuerto de Girona</dt><dd>~35 minutos en coche</dd></div>
+          <div><dt>Barcelona El Prat</dt><dd>~1h 30 min en coche</dd></div>
+          <div><dt>Por carretera</dt><dd>Excelentes conexiones, aparcamiento privado</dd></div>
+        </dl>
+      </div>
+      <div class="prac-col">
+        <h3>Políticas</h3>
+        <dl>
+          <div><dt>Depósito de daños</dt><dd>Reembolsable, detalles a consultar</dd></div>
+          <div><dt>Ruido y horario</dt><dd>Música hasta las 23h</dd></div>
+          <div><dt>Proveedores</dt><dd>Lista de preferidos disponible, externos bienvenidos</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="roman">X V I</div>
+  <h2>Comenzad vuestra historia en Ses Garites</h2>
+  <p>Respondemos a todas las consultas en 24 horas.</p>
+  <a class="btn" href="https://sesgarites.com" target="_blank" rel="noopener">Consultar Ahora</a>
+</div>
+
+<footer>sesgarites.com · Pals, Baix Empordà, Costa Brava, Cataluña</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
