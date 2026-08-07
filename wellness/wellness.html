@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ses Garites — Wellness Retreats in a 16th-Century Catalan Estate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --stone-dark:#332821;
+    --stone-mid:#6B5A4E;
+    --limestone:#DCD3BE;
+    --parchment:#F6F2E8;
+    --sage:#7C8564;
+    --sage-deep:#5B6247;
+    --clay:#B08560;
+    --clay-deep:#8A6244;
+    --linen:#EDE6D6;
+    --ink:#332821;
+    --hair:rgba(51,40,33,0.15);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Libre Franklin', sans-serif;
+    font-weight:400;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:0.005em;
+  }
+  .eyebrow{
+    font-family:'Libre Franklin', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.22em;
+    font-size:0.72rem;
+    font-weight:600;
+    color:var(--sage-deep);
+  }
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- SIGNATURE: BREATH RING ---------- */
+  .ring{
+    width:64px; height:64px;
+    border-radius:50%;
+    border:1px solid var(--sage);
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto 28px;
+    position:relative;
+  }
+  .ring::before{
+    content:"";
+    width:38px; height:38px;
+    border-radius:50%;
+    border:1px solid var(--clay);
+    opacity:0.7;
+  }
+  .arch-divider{
+    width:100%;
+    height:64px;
+    background:var(--parchment);
+    border-top-left-radius:64px;
+    border-top-right-radius:64px;
+    position:relative;
+    top:1px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 35%, rgba(124,133,100,0.14) 0%, rgba(124,133,100,0) 70%),
+      linear-gradient(180deg, rgba(51,40,33,0.22) 0%, rgba(51,40,33,0.74) 100%),
+      url('WellnessHero.jpg');
+    background-size:cover;
+    background-position:center 35%;
+    color:var(--parchment);
+    min-height:92vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:80px 24px 100px;
+  }
+  .hero .eyebrow{color:var(--limestone); margin-bottom:22px;}
+  .hero h1{
+    font-size:clamp(2.4rem, 6.4vw, 4.6rem);
+    line-height:1.05;
+    max-width:16ch;
+  }
+  .hero p.sub{
+    margin-top:26px;
+    max-width:46ch;
+    font-size:1.05rem;
+    font-weight:300;
+    color:var(--limestone);
+  }
+  .hero .loc{
+    margin-top:40px;
+    font-size:0.8rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--limestone);
+    display:flex;
+    gap:14px;
+    align-items:center;
+  }
+  .hero .loc::before,.hero .loc::after{content:""; width:36px; height:1px; background:var(--limestone); opacity:0.5;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:96px 0;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+  .section-head h2{font-size:clamp(1.85rem,3.2vw,2.5rem); margin-top:12px;}
+  .section-head p{margin-top:16px; color:var(--stone-mid); font-size:1.02rem; max-width:56ch;}
+  .section-head.center p{margin-left:auto; margin-right:auto;}
+
+  /* ---------- INTRO ---------- */
+  .intro{background:var(--parchment);}
+  .intro .grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px; align-items:start;}
+  .intro p{color:var(--stone-mid); font-size:1.06rem; margin-bottom:18px;}
+  .intro .exclusive{
+    border-left:2px solid var(--sage);
+    padding-left:20px;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:var(--sage-deep);
+  }
+  .stat-block{
+    background:var(--stone-dark);
+    color:var(--parchment);
+    padding:36px 32px;
+    border-radius:4px 4px 80px 4px;
+    text-align:center;
+  }
+  .stat-block .num{font-family:'Fraunces',serif; font-size:2.6rem; color:var(--clay);}
+  .stat-block .label{font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--limestone); margin-top:6px;}
+  .stat-block-row{display:flex; flex-direction:column; gap:18px;}
+
+  /* ---------- PRACTICES ---------- */
+  .practices{background:var(--stone-dark); color:var(--parchment);}
+  .practices .section-head.center p{color:var(--limestone);}
+  .practices .eyebrow{color:var(--limestone);}
+  .prac-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:rgba(246,242,232,0.14);
+    border:1px solid rgba(246,242,232,0.14);
+  }
+  .prac-card{
+    background:var(--stone-dark);
+    padding:38px 26px;
+    text-align:center;
+  }
+  .prac-card .glyph{
+    width:44px; height:44px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    border:1px solid var(--clay);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .prac-card .glyph svg{width:20px; height:20px; stroke:var(--clay); fill:none; stroke-width:1.3;}
+  .prac-card h3{font-size:1.1rem; font-weight:500; margin-bottom:10px; color:var(--limestone);}
+  .prac-card .where{font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--clay); margin-bottom:10px;}
+  .prac-card p{font-size:0.9rem; color:rgba(246,242,232,0.75); font-weight:300;}
+
+  /* ---------- DAILY RHYTHM ---------- */
+  .rhythm{background:var(--linen);}
+  .rhythm .section-head p{color:var(--stone-mid);}
+  .timeline{display:flex; flex-direction:column;}
+  .time-row{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:40px;
+    padding:34px 0;
+    border-top:1px solid var(--hair);
+  }
+  .time-row:last-child{border-bottom:1px solid var(--hair);}
+  .time-row .time{
+    font-family:'Fraunces',serif;
+    font-size:1.35rem;
+    color:var(--sage-deep);
+  }
+  .time-row .time .tag{
+    display:block;
+    font-family:'Libre Franklin',sans-serif;
+    font-size:0.7rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--clay-deep);
+    margin-top:6px;
+    font-weight:600;
+  }
+  .time-row h4{font-size:1.1rem; margin-bottom:8px;}
+  .time-row p{color:var(--stone-mid); font-size:0.97rem; max-width:60ch;}
+
+  /* ---------- QUOTE ---------- */
+  .quote-section{
+    background:
+      radial-gradient(ellipse 50% 60% at 50% 30%, rgba(176,133,96,0.14) 0%, rgba(176,133,96,0) 70%),
+      var(--stone-dark);
+    color:var(--parchment);
+    text-align:center;
+    padding:110px 24px;
+  }
+  .quote-section blockquote{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:clamp(1.3rem,2.8vw,2rem);
+    max-width:28ch;
+    margin:0 auto;
+    line-height:1.45;
+  }
+  .quote-section cite{
+    display:block;
+    margin-top:26px;
+    font-style:normal;
+    font-family:'Libre Franklin',sans-serif;
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--clay);
+  }
+
+  /* ---------- SPACES ---------- */
+  .spaces{background:var(--parchment);}
+  .space-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--hair); border:1px solid var(--hair);}
+  .space-card{background:var(--parchment); padding:32px 26px;}
+  .space-card h3{font-size:1.08rem; font-weight:500; margin-bottom:8px; font-style:italic;}
+  .space-card p{font-size:0.9rem; color:var(--stone-mid);}
+
+  /* ---------- PRACTICAL ---------- */
+  .practical{background:var(--sage); color:var(--parchment);}
+  .practical .section-head .eyebrow{color:var(--linen);}
+  .practical .section-head p{color:rgba(246,242,232,0.88);}
+  .prac2-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:36px;}
+  .prac2-col h3{font-family:'Libre Franklin',sans-serif; text-transform:uppercase; letter-spacing:0.08em; font-size:0.8rem; font-weight:600; margin-bottom:16px; color:var(--clay);}
+  .prac2-col dl{display:flex; flex-direction:column; gap:12px;}
+  .prac2-col dt{font-size:0.86rem; font-weight:600;}
+  .prac2-col dd{font-size:0.86rem; color:rgba(246,242,232,0.88); margin-top:2px;}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    background:
+      radial-gradient(ellipse 55% 60% at 50% 20%, rgba(124,133,100,0.18) 0%, rgba(124,133,100,0) 70%),
+      var(--stone-dark);
+    color:var(--parchment);
+    text-align:center;
+    padding:120px 24px 90px;
+  }
+  .cta h2{font-size:clamp(2rem,4vw,3rem); max-width:18ch; margin:0 auto 20px;}
+  .cta p{color:var(--limestone); font-weight:300; margin-bottom:34px;}
+  .cta .btn{
+    display:inline-block;
+    border:1px solid var(--clay);
+    color:var(--clay);
+    border-radius:2px 2px 24px 2px;
+    padding:16px 40px;
+    font-size:0.82rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    text-decoration:none;
+    transition:all 0.3s ease;
+  }
+  .cta .btn:hover{background:var(--clay); border-color:var(--clay); color:var(--stone-dark);}
+  footer{
+    background:var(--stone-dark);
+    color:var(--stone-mid);
+    text-align:center;
+    padding:26px 24px 40px;
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none;} }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .intro .grid{grid-template-columns:1fr; gap:40px;}
+    .prac-grid{grid-template-columns:repeat(2,1fr);}
+    .space-grid{grid-template-columns:1fr;}
+    .prac2-grid{grid-template-columns:1fr; row-gap:32px;}
+    .time-row{grid-template-columns:1fr; gap:10px;}
+  }
+  @media (max-width:560px){
+    .prac-grid{grid-template-columns:1fr;}
+    section{padding:64px 0;}
+    .wrap{padding:0 22px;}
+  }
+
+  :focus-visible{outline:2px solid var(--sage); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="ring"></div>
+  <div class="eyebrow">Pals · Costa Brava · Catalonia</div>
+  <h1>Wellness at Ses Garites</h1>
+  <p class="sub">A 16th-century Catalan estate, held quietly for one group at a time — space to breathe, move, paint, and write inside five hundred years of stone.</p>
+  <div class="loc">sesgarites.com</div>
+</div>
+<div class="arch-divider"></div>
+
+<section class="intro reveal">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <div class="eyebrow">The Estate</div>
+        <h2>A whole estate, held for stillness</h2>
+        <p>Ses Garites sits inside the medieval walls of Pals, minutes from the Mediterranean — stone vaults, exposed beams, and terracotta floors that have absorbed five centuries of quiet.</p>
+        <p>For retreat leaders and small groups, the estate is available only as a whole. No shared spaces, no passing strangers — just your group, the garden, and the stillness of an old house.</p>
+        <p class="exclusive">Room to spread out. Silence when you need it. A held space, not a hired hall.</p>
+      </div>
+      <div class="stat-block-row">
+        <div class="stat-block">
+          <div class="num">20</div>
+          <div class="label">Guests, overnight capacity</div>
+        </div>
+        <div class="stat-block">
+          <div class="num">4</div>
+          <div class="label">Distinct spaces for practice</div>
+        </div>
+        <div class="stat-block">
+          <div class="num">500+</div>
+          <div class="label">Years of stone &amp; stillness</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="practices reveal">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">What the Estate Holds</div>
+      <h2>Four practices, four rooms</h2>
+      <p>Every space at Ses Garites was made for one thing five hundred years ago: gathering people together, quietly.</p>
+    </div>
+    <div class="prac-grid">
+      <div class="prac-card">
+        <div class="glyph"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="M12 7 L12 14 M12 10 L6 14 M12 10 L18 14 M12 14 L8 21 M12 14 L16 21"/></svg></div>
+        <h3>Yoga</h3>
+        <div class="where">Garden &amp; Meadow</div>
+        <p>Open grass, morning light, and the tree line beyond — mats laid out with nothing between you and the sky.</p>
+      </div>
+      <div class="prac-card">
+        <div class="glyph"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Meditation</h3>
+        <div class="where">Library Lounge</div>
+        <p>A stone-vaulted room built for quiet — thick walls, soft light, and silence that holds on its own.</p>
+      </div>
+      <div class="prac-card">
+        <div class="glyph"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 16 L11 11 L14 14 L17 8"/></svg></div>
+        <h3>Painting</h3>
+        <div class="where">Terrace &amp; Pool Deck</div>
+        <p>Open-air light through the day, wide views over the meadow, and space to set up easels without hurry.</p>
+      </div>
+      <div class="prac-card">
+        <div class="glyph"><svg viewBox="0 0 24 24"><path d="M4 19 L4 6 Q4 4 6 4 L18 4 Q20 4 20 6 L20 19"/><path d="M4 19 L20 19"/><path d="M8 8 L16 8 M8 11 L16 11 M8 14 L13 14"/></svg></div>
+        <h3>Writing</h3>
+        <div class="where">Bedroom Nooks &amp; Vaults</div>
+        <p>Six quiet rooms, each with its own character — a desk, a window, and enough solitude to finish a thought.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rhythm reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">A Day at Ses Garites</div>
+      <h2>Structured enough to hold, loose enough to breathe</h2>
+      <p>A typical rhythm for a retreat group — shaped around your practice, not the other way round.</p>
+    </div>
+    <div class="timeline">
+      <div class="time-row">
+        <div class="time">Morning<span class="tag">7 – 10am</span></div>
+        <div>
+          <h4>Movement &amp; stillness</h4>
+          <p>Yoga or meditation as the light comes up over the meadow, followed by a slow breakfast on the terrace with produce from the local market.</p>
+        </div>
+      </div>
+      <div class="time-row">
+        <div class="time">Midday<span class="tag">10am – 4pm</span></div>
+        <div>
+          <h4>Open studio time</h4>
+          <p>Painting on the terrace, writing in the library or a quiet room, or simply time by the pool. The estate is large enough that no two people need to keep the same pace.</p>
+        </div>
+      </div>
+      <div class="time-row">
+        <div class="time">Evening<span class="tag">5 – 10pm</span></div>
+        <div>
+          <h4>Gathering</h4>
+          <p>A second sitting or group session as the light softens, then a long dinner in the vaulted dining hall — candlelight, conversation, and nowhere else to be.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote-section reveal">
+  <blockquote>You forget you're anywhere at all. Just stone, light, and the work in front of you.</blockquote>
+  <cite>A retreat leader at Ses Garites</cite>
+</section>
+
+<section class="spaces reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Spaces Included</div>
+      <h2>Everything a retreat group needs</h2>
+    </div>
+    <div class="space-grid">
+      <div class="space-card">
+        <h3>6 Bedrooms &amp; Baths</h3>
+        <p>5 doubles plus 1 suite, each with a private en-suite. Sleeps up to 20.</p>
+      </div>
+      <div class="space-card">
+        <h3>Library Lounge</h3>
+        <p>Stone-vaulted and quiet — the natural home for meditation or a small group circle.</p>
+      </div>
+      <div class="space-card">
+        <h3>Vaulted Dining Hall</h3>
+        <p>Long candlelit dinners for the whole group, seating 20 or more.</p>
+      </div>
+      <div class="space-card">
+        <h3>Garden, Meadow &amp; Pool</h3>
+        <p>Open grass for movement, a private pool for the afternoon, and views that don't end at a fence.</p>
+      </div>
+      <div class="space-card">
+        <h3>Terrace</h3>
+        <p>Shaded and open-air, ideal for painting, writing, or an outdoor session away from the group.</p>
+      </div>
+      <div class="space-card">
+        <h3>Modern Comforts</h3>
+        <p>High-speed WiFi, heating, ceiling fans, and private parking for every guest.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="practical reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Practical Information</div>
+      <h2>What to know before you enquire</h2>
+    </div>
+    <div class="prac2-grid">
+      <div class="prac2-col">
+        <h3>Booking</h3>
+        <dl>
+          <div><dt>Enquiry</dt><dd>Via website or email to check availability</dd></div>
+          <div><dt>Deposit</dt><dd>50% to confirm your dates</dd></div>
+          <div><dt>Balance</dt><dd>Due 30 days before arrival</dd></div>
+          <div><dt>Exclusivity</dt><dd>Whole estate hire only, never shared</dd></div>
+        </dl>
+      </div>
+      <div class="prac2-col">
+        <h3>Capacity</h3>
+        <dl>
+          <div><dt>Overnight guests</dt><dd>Up to 20, across all bedrooms</dd></div>
+          <div><dt>Minimum stay</dt><dd>3 nights, low &amp; mid season</dd></div>
+          <div><dt>Catering</dt><dd>Private chef available on request</dd></div>
+        </dl>
+      </div>
+      <div class="prac2-col">
+        <h3>Getting Here</h3>
+        <dl>
+          <div><dt>Girona Airport</dt><dd>~35 minutes by car</dd></div>
+          <div><dt>Barcelona El Prat</dt><dd>~1h 30 min by car</dd></div>
+          <div><dt>Beach</dt><dd>~5 minutes to Platja de Pals</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="ring"></div>
+  <h2>Bring your group to Ses Garites</h2>
+  <p>We respond to all enquiries within 24 hours.</p>
+  <a class="btn" href="https://sesgarites.com" target="_blank" rel="noopener">Enquire Now</a>
+</div>
+
+<footer>sesgarites.com · Pals, Baix Empordà, Costa Brava, Catalonia</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
