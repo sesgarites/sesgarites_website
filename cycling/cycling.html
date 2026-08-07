@@ -88,126 +88,52 @@
    HERO IMAGES
 ------------------------------*/
 
-.hero{
-    position:relative;
-    overflow:hidden;
+.hero {
+
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+
+    gap: 5rem;
+
+    max-width: 1400px;
+    margin: 0 auto;
+
+    min-height: 90vh;
+
+    padding: 6rem 2rem;
 }
-
-
-/* Shared styles */
-
-.hero-image-overlay{
-    position:absolute;
-    overflow:hidden;
-    border-radius:28px;
-
-    box-shadow:
-        0 25px 70px rgba(0,0,0,.22);
-
-    transition:.45s ease;
-}
-
-.hero-image-overlay img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-}
-
-
-/* MAIN IMAGE */
-
-.image-main{
-
-    width:440px;
-    height:610px;
-
-    right:8%;
-    top:80px;
-
-    z-index:2;
-
-    transform:rotate(-2deg);
-}
-
-.image-main:hover{
-
-    transform:
-        rotate(0deg)
-        translateY(-6px);
-
-}
-
-
-/* SMALL IMAGE */
-
-.image-secondary{
-
-    width:245px;
-    height:315px;
-
-    right:330px;
-    bottom:80px;
-
-    z-index:3;
-
-    background:#fff;
-
-    padding:10px;
-
-    border-radius:22px;
-
-    transform:rotate(6deg);
-}
-
-.image-secondary img{
-
-    border-radius:14px;
-
-}
-
-.image-secondary:hover{
-
-    transform:
-        rotate(3deg)
-        translateY(-6px);
-
-}
-
-
-/* Keeps text above decorative background but below images */
 
 .hero-content{
 
-    position:relative;
-    z-index:4;
+    z-index:2;
 
-    max-width:650px;
-
+    max-width:620px;
 }
 
+.hero-image{
 
-/* Optional */
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
 
-.hero-image-overlay::after{
+.hero-image img{
 
-    content:"";
+    width:100%;
+    max-width:520px;
 
-    position:absolute;
+    height:auto;
 
-    inset:0;
+    display:block;
 
-    background:linear-gradient(
-        to top,
-        rgba(0,0,0,.10),
-        rgba(0,0,0,0)
-    );
-
-    pointer-events:none;
-
+    object-fit:contain;
 }
 
  
+/*----------------------------------------*/ 
  
   /* Image overlay */
   .hero-image-overlay {
@@ -709,23 +635,42 @@
   .cta-btn:hover { background: var(--gold-lt); }
 
   /* ── MOBILE ── */
-  @media (max-width: 1024px) {
-    .hero-image-overlay {
-      width: 440px;
-      height: 280px;
-      bottom: 15px;
-      right: 30px;
-    }
-  }
 
-  @media (max-width: 768px) {
-    .hero-image-overlay {
-      width: 360px;
-      height: 230px;
-      bottom: 10px;
-      right: 20px;
-    }
-  }
+@media (max-width:900px){
+
+.hero{
+
+    grid-template-columns:1fr;
+
+    text-align:center;
+
+    gap:2rem;
+
+    padding:2rem 1.5rem 4rem;
+}
+
+/* Put image first */
+
+.hero-image{
+
+    order:-1;
+}
+
+.hero-image img{
+
+    width:100%;
+    max-width:420px;
+
+    margin:auto;
+}
+
+.hero-content{
+
+    margin:0 auto;
+}
+
+}
+ 
 
  @media (max-width:900px){
 
@@ -795,20 +740,9 @@
     </div>
   </div>
 </div>
-
 <section class="hero">
 
     <div class="hero-dots"></div>
-
-    <!-- Main hero image -->
-    <div class="hero-image-overlay image-main">
-        <img src="SesGaritesCycling.jpg" alt="Cyclist arriving at Ses Garites">
-    </div>
-
-    <!-- Secondary image -->
-    <div class="hero-image-overlay image-secondary">
-        <img src="PalsGravel.jpg" alt="Cycling through Pals">
-    </div>
 
     <div class="hero-content">
 
@@ -829,6 +763,13 @@
         </p>
 
     </div>
+
+    <div class="hero-image">
+        <img src="SesGaritesCycling.jpg"
+             alt="Cyclist arriving at Ses Garites">
+    </div>
+
+</section>
 
     <div class="scroll-hint">
         <span>Discover routes</span>
